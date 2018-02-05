@@ -1,23 +1,23 @@
 const initialStore = {
-  mainBranch: null
+    mainBranch: null
 };
 
 export default(state = initialStore, action) => {
 
 //navigator
-  if (action.type === 'NAVIGATE_BRANCH') {
-    let component = sendComponent(action.name);
+    if (action.type === 'NAVIGATE_BRANCH') {
+        let component = sendComponent(action.name);
     
-    return Object.assign({}, state, {
-      mainBranch: null
-    });
-  }
+        return Object.assign({}, state, {
+            mainBranch: null
+        });
+    }
 
-  return state;
-}
+    return state;
+};
 
 function sendComponent(name) {
-  if (name === '') {
-    return null
-  }
+    if (name === '') {
+        return null;
+    }
 }

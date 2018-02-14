@@ -1,25 +1,26 @@
 
-const getUser = () => {
+const getUser = (dispatch, user, pass, fail) => {
+    console.log('getUser!', user);
+    return dispatch(pass());
+};
+
+const getLists = (dispatch, userId) => {
 
 };
 
-const getLists = (userId) => {
+const getList = (dispatch, userId, listId) => {
 
 };
 
-const getList = (userId, listId) => {
+const getCampaigns = (dispatch, userId) => {
 
 };
 
-const getCampaigns = (userId) => {
+const getCampaign = (dispatch, userId, campaignId) => {
 
 };
 
-const getCampaign = (userId, campaignId) => {
-
-};
-
-const getEventCampaign = (userId, eventCampaignId) => {
+const getEventCampaign = (dispatch, userId, eventCampaignId) => {
 
 };
 

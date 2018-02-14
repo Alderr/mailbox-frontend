@@ -5,18 +5,27 @@ import { Link } from 'react-router-dom';
 
 import Input from './Input';
 
+import { login } from '../actions/loginActions';
 import { required, nonEmpty } from '../validators';
 
 export class LoginPage extends Component {
     constructor(props){
         super(props);
+
+        this.state = {
+            loading: false
+        };
     }
 
-    onSubmit() {
+    onSubmit(values) {
+        console.log('VALUES', values);
 
+        this.props.dispatch(login(values));
     }
 
     render() {
+
+      
 
         let error;
         if (this.props.error) {
@@ -53,6 +62,9 @@ export class LoginPage extends Component {
                         id="password"
                         validate={[required, nonEmpty]}
                     />
+                    <button disabled={this.props.pristine || this.props.submitting}>
+                      Log in
+                    </button>
                 </form>
             </div>
         );

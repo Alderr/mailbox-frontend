@@ -1,3 +1,5 @@
+import { getUser } from './apiCalls';
+
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 
 export const loginSuccess = () => ({
@@ -12,10 +14,11 @@ export const loginFailure = () => ({
 
 export const LOGIN = 'LOGIN';
 
-export const login = (credentials) => ({
-    type: LOGIN,
-    credentials
-});
+export const login = (user) => dispatch => {
+
+    return getUser(dispatch, user, loginSuccess, loginFailure);
+
+};
 
 export const LOGOUT = 'LOGOUT';
 

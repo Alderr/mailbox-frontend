@@ -1,7 +1,6 @@
 
 const initialStore = {
     loggedIn: false,
-    user: '',
     userId: '',
     message: ''
 };
@@ -24,7 +23,7 @@ export default(state = initialStore, action) => {
     else if (action.type === 'LOGIN_SUCCESS') {
         return Object.assign({},state, {
             loggedIn: true,
-            user: 'Vernon'
+            userId: 'Vernon'
         });
     }
 

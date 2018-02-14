@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
-
+import { connect } from 'react-redux';
+import {Field, reduxForm, focus} from 'redux-form';
 import { Link } from 'react-router-dom';
 
-export default class Dashboard extends Component {
+export class LoginPage extends Component {
     constructor(props){
         super(props);
+    }
+
+    onSubmit() {
+      
     }
 
     render() {
@@ -31,3 +36,12 @@ export default class Dashboard extends Component {
         );
     }
 }
+const mapStateToProps = Reducers => {
+    return {
+        actions: Reducers.reducer.actions,
+        navigate: Reducers.reducer.navigate,
+        mainBranch: Reducers.navigateReducer.mainBranch
+    };
+};
+
+export default connect(mapStateToProps)(LoginPage);

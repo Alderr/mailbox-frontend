@@ -3,13 +3,17 @@ import { connect } from 'react-redux';
 import {Field, reduxForm, focus} from 'redux-form';
 import { Link } from 'react-router-dom';
 
+import Input from './Input';
+
+import { required, nonEmpty } from '../validators';
+
 export class LoginPage extends Component {
     constructor(props){
         super(props);
     }
 
     onSubmit() {
-      
+
     }
 
     render() {
@@ -19,29 +23,33 @@ export class LoginPage extends Component {
                 LoginPage
                 </h1>
 
-                <form>
-                    <label>
-                    Username:
-                        <input type="text" name="username" />
-                    </label>
-                    <label>
-                    Password:
-                        <input type="text" name="password" />
-                    </label>
-                    <input type="submit" value="Submit" />
-                </form>
-
                 <button><Link to='/dashboard'>Go To Dashboard</Link></button>
+                <form className='login-form' onSubmit={this.props.handleSubmit( values => this.onSubmit(values))}>
+                
+                    <label htmlFor="username">Username</label>
+                    <Field
+                        component={Input}
+                        type="text"
+                        name="username"
+                        id="username"
+                        validate={[required, nonEmpty]}
+                    />
+
+                    <label htmlFor="password">Password</label>
+                    <Field
+                        component={Input}
+                        type="password"
+                        name="password"
+                        id="password"
+                        validate={[required, nonEmpty]}
+                    />
+                </form>
             </div>
         );
     }
 }
-const mapStateToProps = Reducers => {
-    return {
-        actions: Reducers.reducer.actions,
-        navigate: Reducers.reducer.navigate,
-        mainBranch: Reducers.navigateReducer.mainBranch
-    };
-};
 
-export default connect(mapStateToProps)(LoginPage);
+export default reduxForm({
+    form: 'login',
+    onSubmitFail: (errors, dispatch) => dispatch(focus('login', 'username'))
+})(LoginPage);

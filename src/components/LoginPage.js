@@ -17,15 +17,25 @@ export class LoginPage extends Component {
     }
 
     render() {
+
+        let error;
+        if (this.props.error) {
+            error = (
+                <div className="form-error" aria-live="polite">
+                    {this.props.error}
+                </div>
+            );
+        }
+
         return(
             <div>
                 <h1>
                 LoginPage
                 </h1>
 
-                <button><Link to='/dashboard'>Go To Dashboard</Link></button>
                 <form className='login-form' onSubmit={this.props.handleSubmit( values => this.onSubmit(values))}>
-                
+
+                    {error}
                     <label htmlFor="username">Username</label>
                     <Field
                         component={Input}

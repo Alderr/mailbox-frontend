@@ -2,7 +2,7 @@
 
 const initialStore = {
     actions: 0,
-    something: ''
+    userId: ''
 };
 
 export default(state = initialStore, action) => {

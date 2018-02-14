@@ -4,7 +4,6 @@ const initialStore = {
 
 export default(state = initialStore, action) => {
 
-//navigator
     if (action.type === 'NAVIGATE_BRANCH') {
         let component = sendComponent(action.name);
 
@@ -15,9 +14,3 @@ export default(state = initialStore, action) => {
 
     return state;
 };
-
-function sendComponent(name) {
-    if (name === '') {
-        return null;
-    }
-}

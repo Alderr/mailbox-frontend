@@ -2,6 +2,7 @@
 const initialStore = {
     loggedIn: false,
     user: '',
+    userId: '',
     message: ''
 };
 

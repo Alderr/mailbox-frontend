@@ -6,8 +6,7 @@ import { connect } from 'react-redux';
 
 import {
     BrowserRouter as Router,
-    Route,
-    Link
+    Route
 } from 'react-router-dom';
 
 
@@ -18,7 +17,12 @@ import LoginPage from './components/LoginPage';
 import DashboardLists from './components/Dashboard_Lists';
 import DashboardCampaigns from './components/Dashboard_Campaigns';
 
-import { increaseCount } from './actions/basicActions';
+import DashboardCampaignView from './components/Dashboard_Campaign_View';
+import DashboardListView from './components/Dashboard_List_View';
+
+import DashboardCampaignCreate from './components/Dashboard_Campaign_Create';
+import DashboardListCreate from './components/Dashboard_List_Create';
+
 
 export class App extends Component {
     constructor(props){
@@ -45,7 +49,7 @@ export class App extends Component {
 }
 
 
-let dashboardBranches = ({match}) => {
+const dashboardBranches = ({match}) => {
 
     console.log('switching - branches!');
     console.log(match);
@@ -61,7 +65,7 @@ let dashboardBranches = ({match}) => {
 };
 
 App.defualtProps = {
-    actions: 6
+
 };
 
 const mapStateToProps = Reducers => {

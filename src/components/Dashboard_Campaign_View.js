@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { Link } from 'react-router-dom';
 
-export default class DashboardListCreate extends Component {
+export default class DashboardCampaignView extends Component {
     constructor(props){
         super(props);
     }
@@ -10,7 +10,7 @@ export default class DashboardListCreate extends Component {
     render() {
         return(
             <section>
-                <h1> List - Create </h1>
+                <h1> Campaigns: id </h1>
             </section>
         );
     }

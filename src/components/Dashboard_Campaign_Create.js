@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import loginGate from './requires-login-gate';
 
 import { Link } from 'react-router-dom';
 
-export default class DashboardCampaignCreate extends Component {
+export class DashboardCampaignCreate extends Component {
     constructor(props){
         super(props);
     }
@@ -15,3 +17,12 @@ export default class DashboardCampaignCreate extends Component {
         );
     }
 }
+
+const mapStateToProps = Reducers => {
+    return {
+        loggedIn: Reducers.loginReducer.loggedIn,
+        message: Reducers.loginReducer.message
+    };
+};
+
+export default loginGate()(connect(mapStateToProps)(DashboardCampaignCreate));

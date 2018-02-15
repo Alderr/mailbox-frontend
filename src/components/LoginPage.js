@@ -16,7 +16,7 @@ export class LoginPage extends Component {
 
     onSubmit(values) {
         console.log('VALUES', values);
-        console.log('BASE_URL',process.env.REACT_APP_BASE_URL);
+        console.log('BASE_URL', process.env.REACT_APP_BASE_URL);
         this.props.dispatch(login(values));
     }
 
@@ -31,14 +31,16 @@ export class LoginPage extends Component {
                 <h1>
                 LoginPage
                 </h1>
-                <LoginForm />
+                <LoginForm message={this.props.message} />
             </div>
         );
     }
 }
+
 const mapStateToProps = Reducers => {
     return {
         loggedIn: Reducers.loginReducer.loggedIn,
+        message: Reducers.loginReducer.message
     };
 };
 

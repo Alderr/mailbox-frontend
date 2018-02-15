@@ -28,12 +28,21 @@ export class LoginForm extends Component {
                 </div>
             );
         }
+        let message;
+        if (this.props.message) {
+            message = (
+                <div className="form-error" aria-live="polite">
+                    {this.props.message}
+                </div>
+            );
+        }
 
         return(
             <section>
                 <form className='login-form' onSubmit={this.props.handleSubmit( values => this.onSubmit(values))}>
 
                     {error}
+                    {message}
                     <label htmlFor="username">Username</label>
                     <Field
                         component={Input}

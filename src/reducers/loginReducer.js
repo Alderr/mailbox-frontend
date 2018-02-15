@@ -27,12 +27,12 @@ export default(state = initialStore, action) => {
         return Object.assign({}, state, {
             loading: false,
             loggedIn: true,
-            userId: 'Vernon'
+            userId: action.userId
         });
     }
 
     else if (action.type === 'LOGIN_FAILURE') {
-        return Object.assign({},state, {
+        return Object.assign({}, state, {
             loading: false,
             message: 'Incorrect credentials.'
         });

@@ -5,7 +5,9 @@ const instance = axios.create({
     timeout: 2000
 });
 
-const getUser = (dispatch, user, pass, fail) => {
+const { getUser, getUserDone, getUserFail } = './userActions';
+
+const findUser = (dispatch, user, pass, fail) => {
 
     return instance({
         method: 'post',
@@ -23,12 +25,30 @@ const getUser = (dispatch, user, pass, fail) => {
                 console.log('Wrong!');
                 return dispatch(fail());
             }
-
-            return dispatch(pass());
+            //dispatch(getUser());
+            return dispatch(pass(response.data));
         })
         .catch(err => {
             console.log(err);
             return dispatch(fail());
+        });
+};
+
+const getUserInfo = (dispatch, userId) => {
+
+    return instance({
+        method: 'get',
+        url: `user/${userId}`,
+    })
+        .then(response => {
+            console.log(response);
+            console.log('----RESPONSE----');
+
+            return dispatch(getUserDone(response.data));
+        })
+        .catch(err => {
+            console.log(err);
+            return dispatch(getUserFail(err));
         });
 };
 
@@ -54,7 +74,8 @@ const getEventCampaign = (dispatch, userId, eventCampaignId) => {
 
 module.exports = {
 
-    getUser,
+    findUser,
+    getUserInfo,
     getLists,
     getList,
     getCampaigns,

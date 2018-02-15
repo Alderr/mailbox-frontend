@@ -6,7 +6,8 @@ const initialStore = {
 };
 
 export default(state = initialStore, action) => {
-
+    console.log(state);
+    console.log('----LOGIN STATE----------');
     if (action.type === 'LOGIN') {
         return Object.assign({}, state, {
             message: 'Logging in...'
@@ -21,7 +22,7 @@ export default(state = initialStore, action) => {
     }
 
     else if (action.type === 'LOGIN_SUCCESS') {
-        return Object.assign({},state, {
+        return Object.assign({}, state, {
             loggedIn: true,
             userId: 'Vernon'
         });

@@ -19,13 +19,13 @@ export class LoginPage extends Component {
 
     onSubmit(values) {
         console.log('VALUES', values);
-
+        console.log('BASE_URL',process.env.REACT_APP_BASE_URL);
         this.props.dispatch(login(values));
     }
 
     render() {
 
-      
+
 
         let error;
         if (this.props.error) {

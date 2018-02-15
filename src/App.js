@@ -71,8 +71,6 @@ App.defualtProps = {
 const mapStateToProps = Reducers => {
     return {
         actions: Reducers.reducer.actions,
-        navigate: Reducers.reducer.navigate,
-        mainBranch: Reducers.navigateReducer.mainBranch
     };
 };
 

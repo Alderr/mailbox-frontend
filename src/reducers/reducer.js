@@ -6,7 +6,8 @@ const initialStore = {
 };
 
 export default(state = initialStore, action) => {
-
+    console.log(state);
+    console.log('----STATE----------');
     if (action.type === 'INCREASE_COUNT') {
         return Object.assign({}, state, {
             actions: action.count

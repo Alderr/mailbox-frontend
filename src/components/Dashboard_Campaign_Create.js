@@ -13,6 +13,7 @@ export class DashboardCampaignCreate extends Component {
         return(
             <section>
                 <h1> Campaign - Create </h1>
+                <Link to='/dashboard/campaigns'> Save </Link>
             </section>
         );
     }

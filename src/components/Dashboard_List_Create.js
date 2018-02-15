@@ -11,6 +11,7 @@ export default class DashboardListCreate extends Component {
         return(
             <section>
                 <h1> List - Create </h1>
+                <Link to='/dashboard/lists'> Save </Link>
             </section>
         );
     }

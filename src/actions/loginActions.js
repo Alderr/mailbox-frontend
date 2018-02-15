@@ -2,15 +2,16 @@ import { findUser } from './apiCalls';
 
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 
-export const loginSuccess = (userId) => ({  
+export const loginSuccess = (userId) => ({
     type: LOGIN_SUCCESS,
     userId
 });
 
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 
-export const loginFailure = () => ({
-    type: LOGIN_FAILURE
+export const loginFailure = (message) => ({
+    type: LOGIN_FAILURE,
+    message
 });
 
 export const LOGIN = 'LOGIN';

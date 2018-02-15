@@ -3,6 +3,7 @@ import {
     getDashboardDone,
     getDashboardFail,
     getListsDone,
+    getCampaignsDone,
     fetchFail
 
 } from './userActions';
@@ -10,8 +11,7 @@ import {
 export const axios = require('axios');
 
 export const instance = axios.create({
-    baseURL: process.env.REACT_APP_BASE_URL,
-    timeout: 2000
+    baseURL: process.env.REACT_APP_BASE_URL
 });
 
 export const findUser = (dispatch, user, pass, fail) => {
@@ -32,14 +32,14 @@ export const findUser = (dispatch, user, pass, fail) => {
 
             if (response.data === 'Wrong credentials!') {
                 console.log('Wrong!');
-                return dispatch(fail());
+                return dispatch(fail('Wrong credentials!'));
             }
 
             return dispatch(pass(userId));
         })
         .catch(err => {
-            console.log(err);
-            return dispatch(fail());
+            console.log(err.message);
+            return dispatch(fail(err.message));
         });
 };
 
@@ -74,7 +74,7 @@ export const getListsData = (dispatch, userId) => {
         })
         .catch(err => {
             console.log(err);
-            return dispatch(fetchFail(err));
+            return dispatch(fetchFail(err.message));
         });
 };
 
@@ -82,8 +82,22 @@ export const getList = (dispatch, userId, listId) => {
 
 };
 
-export const getCampaigns = (dispatch, userId) => {
+export const getCampaignsData = (dispatch, userId) => {
 
+    return instance({
+        method: 'get',
+        url: `campaign/${userId}`,
+    })
+        .then(response => {
+            console.log(response);
+            console.log('----RESPONSE_LISTS----');
+
+            return dispatch(getCampaignsDone(response.data));
+        })
+        .catch(err => {
+            console.log(err);
+            return dispatch(fetchFail(err));
+        });
 };
 
 export const getCampaign = (dispatch, userId, campaignId) => {

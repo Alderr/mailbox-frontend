@@ -1,7 +1,8 @@
 import {
 
     getDashboardData,
-    getListsData
+    getListsData,
+    getCampaignsData
 
 } from './apiCalls';
 
@@ -14,6 +15,12 @@ export const getDashboard = (userId) => dispatch => {
 export const getLists = (userId) => dispatch => {
     dispatch(loading());
     return getListsData(dispatch, userId);
+
+};
+
+export const getCampaigns = (userId) => dispatch => {
+    dispatch(loading());
+    return getCampaignsData(dispatch, userId);
 
 };
 
@@ -34,6 +41,13 @@ export const GETLISTS_DONE = 'GETLISTS_DONE';
 
 export const getListsDone = (data) => ({
     type: GETLISTS_DONE,
+    data
+});
+
+export const GETCAMPAIGNS_DONE = 'GETCAMPAIGNS_DONE';
+
+export const getCampaignsDone = (data) => ({
+    type: GETCAMPAIGNS_DONE,
     data
 });
 

@@ -7,7 +7,7 @@ const initialStore = {
 };
 
 export default(state = initialStore, action) => {
-  
+
     if (action.type === 'LOGIN') {
         return Object.assign({}, state, {
             loading: true,
@@ -33,7 +33,7 @@ export default(state = initialStore, action) => {
     else if (action.type === 'LOGIN_FAILURE') {
         return Object.assign({}, state, {
             loading: false,
-            message: 'Incorrect credentials.'
+            message: action.message
         });
     }
 

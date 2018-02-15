@@ -28,15 +28,23 @@ export default(state = initialStore, action) => {
         console.log(action.data);
         return Object.assign({}, state, {
             loading: false,
-            lists: state.data
+            listsData: action.data
+        });
+    }
+
+    if (action.type === 'GETCAMPAINGS_DONE') {
+        console.log(action.data);
+        return Object.assign({}, state, {
+            loading: false,
+            campaignsData: action.data
         });
     }
 
     if (action.type === 'GETDASHBOARD_FAIL') {
-        console.log(action.data);
+
         return Object.assign({}, state, {
             loading: false,
-            message: state.error
+            message: action.error
         });
     }
 
@@ -44,7 +52,7 @@ export default(state = initialStore, action) => {
         console.log(action.data);
         return Object.assign({}, state, {
             loading: false,
-            message: state.error
+            message: action.error
         });
     }
 

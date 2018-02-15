@@ -1,4 +1,11 @@
-import { getDashboardDone, getDashboardFail } from './userActions';
+import {
+
+    getDashboardDone,
+    getDashboardFail,
+    getListsDone,
+    fetchFail
+
+} from './userActions';
 
 export const axios = require('axios');
 
@@ -54,8 +61,21 @@ export const getDashboardData = (dispatch, userId) => {
         });
 };
 
-export const getLists = (dispatch, userId) => {
+export const getListsData = (dispatch, userId) => {
+    return instance({
+        method: 'get',
+        url: `list/${userId}`,
+    })
+        .then(response => {
+            console.log(response);
+            console.log('----RESPONSE_LISTS----');
 
+            return dispatch(getListsDone(response.data));
+        })
+        .catch(err => {
+            console.log(err);
+            return dispatch(fetchFail(err));
+        });
 };
 
 export const getList = (dispatch, userId, listId) => {

@@ -24,6 +24,14 @@ export default(state = initialStore, action) => {
         });
     }
 
+    if (action.type === 'GETLISTS_DONE') {
+        console.log(action.data);
+        return Object.assign({}, state, {
+            loading: false,
+            lists: state.data
+        });
+    }
+
     if (action.type === 'GETDASHBOARD_FAIL') {
         console.log(action.data);
         return Object.assign({}, state, {
@@ -32,13 +40,14 @@ export default(state = initialStore, action) => {
         });
     }
 
-    // if (action.type === 'GETUSER_FAIL') {
-    //     console.log(action.data);
-    //     return Object.assign({}, state, {
-    //         loading: false,
-    //         message: state.error
-    //     });
-    // }
+    if (action.type === 'FETCH_FAIL') {
+        console.log(action.data);
+        return Object.assign({}, state, {
+            loading: false,
+            message: state.error
+        });
+    }
+
 
     return state;
 };

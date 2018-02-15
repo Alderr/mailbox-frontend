@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import loginGate from './requires-login-gate';
 
-import { getDashboard } from '../actions/userActions';
+import { getLists } from '../actions/userActions';
 
 export class DashboardLists extends Component {
     constructor(props){
@@ -12,7 +12,7 @@ export class DashboardLists extends Component {
     }
 
     componentWillMount() {
-        this.props.dispatch(getDashboard(this.props.userId));
+        this.props.dispatch(getLists(this.props.userId));
     }
 
     render() {
@@ -28,7 +28,6 @@ export class DashboardLists extends Component {
 const mapStateToProps = Reducers => {
     return {
         loggedIn: Reducers.loginReducer.loggedIn,
-        message: Reducers.loginReducer.message,
         userId: Reducers.loginReducer.userId
     };
 };

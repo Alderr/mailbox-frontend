@@ -32,7 +32,7 @@ export default(state = initialStore, action) => {
         });
     }
 
-    if (action.type === 'GETCAMPAINGS_DONE') {
+    if (action.type === 'GETCAMPAIGNS_DONE') {
         console.log(action.data);
         return Object.assign({}, state, {
             loading: false,

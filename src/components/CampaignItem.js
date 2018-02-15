@@ -14,7 +14,7 @@ export default class CampaignItem extends Component {
         console.log('--a list item---');
         return(
             <section>
-                <li> 1 </li>
+                <li> {this.props.campaignName} - Sent on {this.props.date} </li>
             </section>
         );
     }

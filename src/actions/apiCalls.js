@@ -6,7 +6,7 @@ const instance = axios.create({
 });
 
 const getUser = (dispatch, user, pass, fail) => {
-    console.log('getUser!', user);
+
     return instance({
         method: 'post',
         url: 'login/signIn',
@@ -18,16 +18,17 @@ const getUser = (dispatch, user, pass, fail) => {
         .then(response => {
             console.log(response);
             console.log('----RESPONSE----');
+
             if (response.data === 'Wrong credentials!') {
                 console.log('Wrong!');
                 return dispatch(fail());
             }
-            console.log('----------still-------');
+
             return dispatch(pass());
         })
         .catch(err => {
             console.log(err);
-            return dispatch(pass());
+            return dispatch(fail());
         });
 };
 

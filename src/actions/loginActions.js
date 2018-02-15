@@ -15,7 +15,7 @@ export const loginFailure = () => ({
 export const LOGIN = 'LOGIN';
 
 export const login = (user) => dispatch => {
-
+    dispatch({type: LOGIN});
     return getUser(dispatch, user, loginSuccess, loginFailure);
 
 };

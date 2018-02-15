@@ -1,6 +1,7 @@
 
 const initialStore = {
     loggedIn: false,
+    loading: false,
     userId: '',
     message: ''
 };
@@ -10,6 +11,7 @@ export default(state = initialStore, action) => {
     console.log('----LOGIN STATE----------');
     if (action.type === 'LOGIN') {
         return Object.assign({}, state, {
+            loading: true,
             message: 'Logging in...'
         });
     }
@@ -23,6 +25,7 @@ export default(state = initialStore, action) => {
 
     else if (action.type === 'LOGIN_SUCCESS') {
         return Object.assign({}, state, {
+            loading: false,
             loggedIn: true,
             userId: 'Vernon'
         });
@@ -30,6 +33,7 @@ export default(state = initialStore, action) => {
 
     else if (action.type === 'LOGIN_FAILURE') {
         return Object.assign({},state, {
+            loading: false,
             message: 'Incorrect credentials.'
         });
     }

@@ -6,7 +6,7 @@ export const loginSuccess = () => ({
     type: LOGIN_SUCCESS
 });
 
-export const LOGIN_FAILURE = 'LOGIN_SUCCESS';
+export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 
 export const loginFailure = () => ({
     type: LOGIN_FAILURE
@@ -23,6 +23,5 @@ export const login = (user) => dispatch => {
 export const LOGOUT = 'LOGOUT';
 
 export const logout = (credentials) => ({
-    type: LOGOUT,
-    credentials
+    type: LOGOUT
 });

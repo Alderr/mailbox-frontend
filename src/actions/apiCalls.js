@@ -1,9 +1,34 @@
 const axios = require('axios');
 
+const instance = axios.create({
+    baseURL: process.env.REACT_APP_BASE_URL,
+    timeout: 2000
+});
 
 const getUser = (dispatch, user, pass, fail) => {
     console.log('getUser!', user);
-    return dispatch(pass());
+    return instance({
+        method: 'post',
+        url: 'login/signIn',
+        data: {
+            username: user.username,
+            password: user.password
+        }
+    })
+        .then(response => {
+            console.log(response);
+            console.log('----RESPONSE----');
+            if (response.data === 'Wrong credentials!') {
+                console.log('Wrong!');
+                return dispatch(fail());
+            }
+            console.log('----------still-------');
+            return dispatch(pass());
+        })
+        .catch(err => {
+            console.log(err);
+            return dispatch(pass());
+        });
 };
 
 const getLists = (dispatch, userId) => {

@@ -4,7 +4,7 @@ import { Link, Route } from 'react-router-dom';
 
 import loginGate from './requires-login-gate';
 
-import { getUser } from '../actions/userActions';
+import { getDashboard } from '../actions/userActions';
 
 
 export class Dashboard extends Component {
@@ -13,7 +13,7 @@ export class Dashboard extends Component {
     }
 
     componentWillMount() {
-        this.props.dispatch(getUser(this.props.userId));
+        this.props.dispatch(getDashboard(this.props.userId));
     }
 
     render() {

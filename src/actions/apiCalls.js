@@ -1,4 +1,4 @@
-import { getUserDone, getUserFail } from './userActions';
+import { getDashboardDone, getDashboardFail } from './userActions';
 
 export const axios = require('axios');
 
@@ -36,21 +36,21 @@ export const findUser = (dispatch, user, pass, fail) => {
         });
 };
 
-export const getUserInfo = (dispatch, userId) => {
+export const getDashboardData = (dispatch, userId) => {
 
     return instance({
         method: 'get',
-        url: `user/${userId}`,
+        url: 'user/summary',
     })
         .then(response => {
             console.log(response);
             console.log('----RESPONSE----');
 
-            return dispatch(getUserDone(response.data));
+            return dispatch(getDashboardDone(response.data));
         })
         .catch(err => {
             console.log(err);
-            return dispatch(getUserFail(err));
+            return dispatch(getDashboardFail(err));
         });
 };
 

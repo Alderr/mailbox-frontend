@@ -7,8 +7,7 @@ const initialStore = {
 };
 
 export default(state = initialStore, action) => {
-    console.log(state);
-    console.log('----LOGIN STATE----------');
+  
     if (action.type === 'LOGIN') {
         return Object.assign({}, state, {
             loading: true,

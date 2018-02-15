@@ -1,13 +1,13 @@
 const initialStore = {
     loading: false,
     message: '',
-    lists: '',
-    campaigns: ''
+    dashboardData: '',
+    listsData: '',
+    campaignsData: '',
+    eventData: ''
 };
 
 export default(state = initialStore, action) => {
-    console.log(state);
-    console.log('-------USER_STATE----------');
 
     if (action.type === 'LOADING') {
 
@@ -16,22 +16,29 @@ export default(state = initialStore, action) => {
         });
     }
 
-    if (action.type === 'GETUSER_DONE') {
+    if (action.type === 'GETDASHBOARD_DONE') {
         console.log(action.data);
         return Object.assign({}, state, {
             loading: false,
-            lists: action.data.lists,
-            campaigns: action.data.campaigns
+            dashboardData: state.data
         });
     }
 
-    if (action.type === 'GETUSER_FAIL') {
+    if (action.type === 'GETDASHBOARD_FAIL') {
         console.log(action.data);
         return Object.assign({}, state, {
             loading: false,
             message: state.error
         });
     }
+
+    // if (action.type === 'GETUSER_FAIL') {
+    //     console.log(action.data);
+    //     return Object.assign({}, state, {
+    //         loading: false,
+    //         message: state.error
+    //     });
+    // }
 
     return state;
 };

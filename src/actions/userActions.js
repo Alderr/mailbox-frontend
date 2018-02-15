@@ -1,8 +1,8 @@
-import { getUserInfo } from './apiCalls';
+import { getDashboardData } from './apiCalls';
 
-export const getUser = (userId) => dispatch => {
+export const getDashboard = (userId) => dispatch => {
     dispatch(loading());
-    return getUserInfo(dispatch, userId);
+    return getDashboardData(dispatch, userId);
 
 };
 
@@ -12,16 +12,16 @@ export const loading = () => ({
     type: LOADING
 });
 
-export const GETUSER_DONE = 'GETUSER_DONE';
+export const GETDASHBOARD_DONE = 'GETDASHBOARD_DONE';
 
-export const getUserDone = (data) => ({
-    type: GETUSER_DONE,
+export const getDashboardDone = (data) => ({
+    type: GETDASHBOARD_DONE,
     data
 });
 
 export const GETUSER_FAIL = 'GETUSER_FAIL';
 
-export const getUserFail = (error) => ({
+export const getDashboardFail = (error) => ({
     type: GETUSER_FAIL,
     error
 });

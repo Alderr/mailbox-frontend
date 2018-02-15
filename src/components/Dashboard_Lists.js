@@ -1,10 +1,18 @@
 import React, { Component } from 'react';
-
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-export default class DashboardLists extends Component {
+import loginGate from './requires-login-gate';
+
+import { getDashboard } from '../actions/userActions';
+
+export class DashboardLists extends Component {
     constructor(props){
         super(props);
+    }
+
+    componentWillMount() {
+        this.props.dispatch(getDashboard(this.props.userId));
     }
 
     render() {
@@ -16,3 +24,13 @@ export default class DashboardLists extends Component {
         );
     }
 }
+
+const mapStateToProps = Reducers => {
+    return {
+        loggedIn: Reducers.loginReducer.loggedIn,
+        message: Reducers.loginReducer.message,
+        userId: Reducers.loginReducer.userId
+    };
+};
+
+export default loginGate()(connect(mapStateToProps)(DashboardLists));

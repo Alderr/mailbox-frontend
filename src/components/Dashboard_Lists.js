@@ -10,9 +10,8 @@ export default class DashboardLists extends Component {
     render() {
         return(
             <section>
-                <h1>
-          Lists
-                </h1>
+                <h1> Lists </h1>
+                <Link to='/dashboard/lists/create'> Create </Link>
             </section>
         );
     }

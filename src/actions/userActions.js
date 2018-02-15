@@ -12,6 +12,13 @@ export const loading = () => ({
     type: LOADING
 });
 
+export const GETUSER_DONE = 'GETUSER_DONE';
+
+export const getUserDone = (data) => ({
+    type: GETUSER_DONE,
+    data
+});
+
 export const GETUSER_FAIL = 'GETUSER_FAIL';
 
 export const getUserFail = (error) => ({

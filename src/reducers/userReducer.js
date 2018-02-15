@@ -1,5 +1,4 @@
 const initialStore = {
-    userId: '',
     loading: false,
     message: '',
     lists: '',
@@ -21,6 +20,8 @@ export default(state = initialStore, action) => {
         console.log(action.data);
         return Object.assign({}, state, {
             loading: false,
+            lists: action.data.lists,
+            campaigns: action.data.campaigns
         });
     }
 

@@ -11,7 +11,7 @@ export default class DashboardCampaigns extends Component {
         return(
             <section>
                 <h1> Campaigns </h1>
-                <Link to='/campaign/create'> </Link>
+                <Link to='/dashboard/campaigns/create'> Create </Link>
             </section>
         );
     }

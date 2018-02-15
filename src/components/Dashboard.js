@@ -4,9 +4,16 @@ import { Link, Route } from 'react-router-dom';
 
 import loginGate from './requires-login-gate';
 
+import { getUser } from '../actions/userActions';
+
+
 export class Dashboard extends Component {
     constructor(props){
         super(props);
+    }
+
+    componentWillMount() {
+        this.props.dispatch(getUser(this.props.userId));
     }
 
     render() {
@@ -31,7 +38,8 @@ export class Dashboard extends Component {
 const mapStateToProps = Reducers => {
     return {
         loggedIn: Reducers.loginReducer.loggedIn,
-        message: Reducers.loginReducer.message
+        message: Reducers.loginReducer.message,
+        userId: Reducers.loginReducer.userId
     };
 };
 

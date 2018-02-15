@@ -40,7 +40,7 @@ export class App extends Component {
                     <Route path='/dashboard' component={Dashboard} />
                     <Route exact path='/dashboard/:page' component={dashboardBranches} />
                     <Route exact path='/dashboard/:page/:id' component={null} />
-                    <Route exact path='/dashboard/:page/create' component={null} />
+                    <Route exact path='/dashboard/:page/create' component={createBranches} />
 
                 </div>
             </Router>
@@ -63,6 +63,22 @@ const dashboardBranches = ({match}) => {
 
     return <Home />;
 };
+
+const createBranches = ({match}) => {
+
+    console.log('switching - create branches!');
+    console.log(match);
+    if (match.url === '/dashboard/lists/create') {
+        return <DashboardListCreate />;
+    }
+
+    else if (match.url === '/dashboard/campaigns/create') {
+        return <DashboardCampaignCreate />;
+    }
+
+    return <Home />;
+};
+
 
 App.defualtProps = {
 

@@ -1,9 +1,8 @@
 import { findUser } from './apiCalls';
-import { getUser } from './userActions';
 
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 
-export const loginSuccess = (userId) => ({
+export const loginSuccess = (userId) => ({  
     type: LOGIN_SUCCESS,
     userId
 });

@@ -1,13 +1,13 @@
-const axios = require('axios');
+import { getUserDone, getUserFail } from './userActions';
 
-const instance = axios.create({
+export const axios = require('axios');
+
+export const instance = axios.create({
     baseURL: process.env.REACT_APP_BASE_URL,
     timeout: 2000
 });
 
-const { getUser, getUserDone, getUserFail } = './userActions';
-
-const findUser = (dispatch, user, pass, fail) => {
+export const findUser = (dispatch, user, pass, fail) => {
 
     return instance({
         method: 'post',
@@ -18,6 +18,8 @@ const findUser = (dispatch, user, pass, fail) => {
         }
     })
         .then(response => {
+            let userId = response.data;
+
             console.log(response);
             console.log('----RESPONSE----');
 
@@ -25,8 +27,8 @@ const findUser = (dispatch, user, pass, fail) => {
                 console.log('Wrong!');
                 return dispatch(fail());
             }
-            //dispatch(getUser());
-            return dispatch(pass(response.data));
+
+            return dispatch(pass(userId));
         })
         .catch(err => {
             console.log(err);
@@ -34,7 +36,7 @@ const findUser = (dispatch, user, pass, fail) => {
         });
 };
 
-const getUserInfo = (dispatch, userId) => {
+export const getUserInfo = (dispatch, userId) => {
 
     return instance({
         method: 'get',
@@ -52,34 +54,22 @@ const getUserInfo = (dispatch, userId) => {
         });
 };
 
-const getLists = (dispatch, userId) => {
+export const getLists = (dispatch, userId) => {
 
 };
 
-const getList = (dispatch, userId, listId) => {
+export const getList = (dispatch, userId, listId) => {
 
 };
 
-const getCampaigns = (dispatch, userId) => {
+export const getCampaigns = (dispatch, userId) => {
 
 };
 
-const getCampaign = (dispatch, userId, campaignId) => {
+export const getCampaign = (dispatch, userId, campaignId) => {
 
 };
 
-const getEventCampaign = (dispatch, userId, eventCampaignId) => {
-
-};
-
-module.exports = {
-
-    findUser,
-    getUserInfo,
-    getLists,
-    getList,
-    getCampaigns,
-    getCampaign,
-    getEventCampaign
+export const getEventCampaign = (dispatch, userId, eventCampaignId) => {
 
 };

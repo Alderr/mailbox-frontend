@@ -2,6 +2,7 @@ import {
 
     getDashboardDone,
     getDashboardFail,
+    getLists,
     getListsDone,
     getCampaignsDone,
     getCampaignEventDone,
@@ -137,6 +138,25 @@ export const createListData = (dispatch, userId, data, moveToScreen) => {
             console.log('----RESPONSE_CREATE_LIST----');
 
             return moveToScreen();
+        })
+        .catch(err => {
+            console.log('err', err);
+            return dispatch(fetchFail(err.message));
+        });
+};
+
+export const deleteListData = (dispatch, userId, listId) => {
+
+    console.log('I was given ', userId, listId);
+    return instance({
+        method: 'delete',
+        url: `list/${userId}/delete/${listId}`
+    })
+        .then(response => {
+            console.log(response);
+            console.log('----RESPONSE_DELETE_LIST----');
+
+            dispatch(getLists(userId));
         })
         .catch(err => {
             console.log('err', err);

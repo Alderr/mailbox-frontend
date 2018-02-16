@@ -67,16 +67,16 @@ const dashboardBranches = ({match}) => {
     return <Home />;
 };
 
-const createBranches = ({match}) => {
+const createBranches = ({match, history}) => {
 
     console.log('switching - create branches!');
     console.log(match);
     if (match.url === '/dashboard/lists/create') {
-        return <DashboardListCreate />;
+        return <DashboardListCreate history={history}/>;
     }
 
     else if (match.url === '/dashboard/campaigns/create') {
-        return <DashboardCampaignCreate />;
+        return <DashboardCampaignCreate history={history}/>;
     }
 
     return <Home />;

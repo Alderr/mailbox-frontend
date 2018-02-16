@@ -62,6 +62,7 @@ export default(state = initialStore, action) => {
     }
 
     if (action.type === 'FETCH_FAIL') {
+        console.log(action);
         console.log(action.data);
         return Object.assign({}, state, {
             loading: false,

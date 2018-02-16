@@ -121,3 +121,25 @@ export const getCampaignEventData = (dispatch, campaignEventId) => {
             return dispatch(fetchFail(err.message));
         });
 };
+
+export const createListData = (dispatch, userId, data, moveToScreen) => {
+    const { name } = data;
+    console.log('I was given ', name);
+    return instance({
+        method: 'post',
+        url: `list/${userId}/create`,
+        data: {
+            name
+        }
+    })
+        .then(response => {
+            console.log(response);
+            console.log('----RESPONSE_CREATE_LIST----');
+
+            return moveToScreen();
+        })
+        .catch(err => {
+            console.log('err', err);
+            return dispatch(fetchFail(err.message));
+        });
+};

@@ -18,7 +18,41 @@ export class DashboardCampaignView extends Component {
     }
 
     componentWillMount() {
+        console.log('Mounted?');
         this.props.dispatch(getCampaignEvent(this.props.campaign.campaign_event_data_id));
+        this.startPeriodicRefresh();
+    }
+
+    componentWillUnmount() {
+        console.log('unmounted?');
+        this.stopPeriodicRefresh();
+    }
+
+    shouldComponentUpdate(nextProps){
+        console.log('checking if i should update?');
+        if (this.props.campaignEvent){
+            let checkOne = nextProps.campaignEvent.click.emails.length === this.props.campaignEvent.click.emails.length;
+            let checkTwo = nextProps.campaignEvent.open.emails.length === this.props.campaignEvent.open.emails.length;
+            console.log('and.. ', !(checkOne && checkTwo));
+            return !(checkOne && checkTwo);
+        }
+
+        return true;
+
+    }
+
+    startPeriodicRefresh() {
+        this.refreshInterval = setInterval(
+            () => {
+                console.log('every so and so');
+                return this.props.dispatch(getCampaignEvent(this.props.campaign.campaign_event_data_id));
+            },
+            5 * 1000 // 20 seconds
+        );
+    }
+
+    stopPeriodicRefresh() {
+        clearInterval(this.refreshInterval);
     }
 
     render() {

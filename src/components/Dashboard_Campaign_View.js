@@ -32,7 +32,7 @@ export class DashboardCampaignView extends Component {
         console.log('checking if i should update?');
         if (this.props.campaignEvent){
             let checkOne = nextProps.campaignEvent.click.emails.length === this.props.campaignEvent.click.emails.length;
-            let checkTwo = nextProps.campaignEvent.open.emails.length === this.props.campaignEvent.open.emails.length;
+            let checkTwo = this.getClicks(nextProps.campaignEvent.click.emails) === this.getClicks(this.props.campaignEvent.click.emails);
             console.log('and.. ', !(checkOne && checkTwo));
             return !(checkOne && checkTwo);
         }
@@ -55,6 +55,16 @@ export class DashboardCampaignView extends Component {
         clearInterval(this.refreshInterval);
     }
 
+    getClicks(arr) {
+        let clicks = 0;
+        arr.forEach(email => {
+            console.log('YO>>>>>>');
+            clicks = clicks + email.clickEvents.length;
+        });
+
+        return clicks;
+    }
+
     render() {
 
         let loading;
@@ -64,6 +74,7 @@ export class DashboardCampaignView extends Component {
 
         let campaign_view;
         if (!this.props.loading && this.props.campaignEvent && !this.props.message) {
+            // console.log('clicks', clicks);
             campaign_view =
                 <div>
                     <h1> Campaign: {this.props.campaign.name} </h1>
@@ -78,7 +89,7 @@ export class DashboardCampaignView extends Component {
                             <h2>Open: {this.props.campaignEvent.open.emails.length} </h2>
                         </div>
                         <div className='box'>
-                            <h2>Click: {this.props.campaignEvent.click.emails.length}</h2>
+                            <h2>Click: {this.getClicks(this.props.campaignEvent.click.emails)}</h2>
                         </div>
                     </div>
                 </div>;

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import loginGate from './requires-login-gate';
 
-import { getCampaigns } from '../actions/userActions';
+import { getCampaigns, deleteContact } from '../actions/userActions';
 
 export class DashboardListView extends Component {
     constructor(props){
@@ -24,10 +24,17 @@ export class DashboardListView extends Component {
                     <p>{contact.firstName} {contact.lastName}</p>
                     <p>{contact.email}</p>
                     <p>{contact.date}</p>
-                    <button onClick={null}> Delete </button>
+                    <button onClick={() => this.deleteContact(contact._id)}> Delete </button>
                 </li>);
         });
     }
+
+    deleteContact = (id) => {
+
+      console.log('this contact....', id);
+      this.props.dispatch(deleteContact(this.props.userId, this.props.id, id));
+    }
+
     componentWillMount() {
         //this.props.dispatch(getCampaigns(this.props.userId));
     }

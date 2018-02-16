@@ -70,6 +70,7 @@ export default(state = initialStore, action) => {
             campaignEventData: action.data
         });
     }
+
     if (action.type === 'GETDASHBOARD_FAIL') {
 
         return Object.assign({}, state, {
@@ -92,6 +93,14 @@ export default(state = initialStore, action) => {
         console.log(action.data);
         return Object.assign({}, state, {
             currentList: action.data,
+        });
+    }
+
+    if (action.type === 'SET_CURRENT_CAMPAIGN') {
+        console.log(action);
+        console.log(action.data);
+        return Object.assign({}, state, {
+            currentCampaign: action.data,
         });
     }
 

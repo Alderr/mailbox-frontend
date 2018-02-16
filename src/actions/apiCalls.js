@@ -2,9 +2,11 @@ import {
 
     getDashboardDone,
     getDashboardFail,
+    getList,
     getLists,
     getListDone,
     getListsDone,
+    getCampaigns,
     getCampaignsDone,
     getCampaignEventDone,
     fetchFail
@@ -81,16 +83,16 @@ export const getListsData = (dispatch, userId) => {
         });
 };
 
-export const getList = (dispatch, userId, listId) => {
+export const getListData = (dispatch, userId, listId) => {
     return instance({
         method: 'get',
         url: `list/${userId}/${listId}`,
     })
         .then(response => {
             console.log(response);
-            console.log('----RESPONSE_LIST----');
+            console.log('----RESPONSE_ONE_LIST----');
 
-            return dispatch(getListsDone(response.data));
+            return dispatch(getListDone(response.data));
         })
         .catch(err => {
             console.log(err);
@@ -159,12 +161,14 @@ export const createListData = (dispatch, userId, data, moveToScreen) => {
         });
 };
 
-export const createContactData = (dispatch, userId, listId, data, moveToScreen) => {
-    const { firstName, lastName, email } = data;
-    console.log('I was given ', firstName, lastName, email);
+export const createCampaignData = (dispatch, userId, data, moveToScreen) => {
+    // const { name, email_content, lists } = data;
+    //const { body, subject, data } = email_content;
+    //console.log('I was given SENDER, EMAIL_CONTENT, LISTS, NAME\n', JSON.stringify(email_content, lists, name, null, 2));
+
     // return instance({
     //     method: 'post',
-    //     url: `contact/${userId}/${listId}/add`,
+    //     url: `list/${userId}/create`,
     //     data: {
     //         name
     //     }
@@ -173,13 +177,38 @@ export const createContactData = (dispatch, userId, listId, data, moveToScreen) 
     //         console.log(response);
     //         console.log('----RESPONSE_CREATE_LIST----');
     //
-    //         //getList
     //         return moveToScreen();
     //     })
     //     .catch(err => {
     //         console.log('err', err);
     //         return dispatch(fetchFail(err.message));
     //     });
+};
+
+export const createContactData = (dispatch, userId, listId, data, moveToScreen) => {
+    const { firstName, lastName, email } = data;
+    console.log('I was given ', firstName, lastName, email);
+
+    return instance({
+        method: 'put',
+        url: `list/${userId}/update/${listId}/createContact`,
+        data: {
+            firstName,
+            lastName,
+            email
+        }
+    })
+        .then(response => {
+            console.log(response);
+            console.log('----RESPONSE_CREATE_LIST----');
+
+            dispatch(getList(userId, listId));
+            return moveToScreen();
+        })
+        .catch(err => {
+            console.log('err', err);
+            return dispatch(fetchFail(err.message));
+        });
 };
 
 export const deleteListData = (dispatch, userId, listId) => {
@@ -198,5 +227,46 @@ export const deleteListData = (dispatch, userId, listId) => {
         .catch(err => {
             console.log('err', err);
             return dispatch(fetchFail(err.message));
+        });
+};
+
+export const deleteCampaignData = (dispatch, userId, campaignId) => {
+
+    console.log('I was given ', userId, campaignId);
+    return instance({
+        method: 'delete',
+        url: `campaign/${userId}/delete/${campaignId}`
+    })
+        .then(response => {
+            console.log(response);
+            console.log('----RESPONSE_DELETE_CAMPAIGN----');
+
+            dispatch(getCampaigns(userId));
+        })
+        .catch(err => {
+            console.log('err', err);
+            return dispatch(fetchFail(err.message));
+        });
+};
+
+export const deleteContactData = (dispatch, userId, listId, contactId) => {
+
+    console.log('I was given ', userId, listId, contactId);
+    return instance({
+        method: 'put',
+        url: `list/${userId}/update/${listId}/deleteContact`,
+        data: {
+            contactId
+        }
+    })
+        .then(response => {
+            console.log(response);
+            console.log('----RESPONSE_DELETE_LIST----');
+
+            dispatch(getLists(userId));
+        })
+        .catch(err => {
+            console.log('err', err);
+            dispatch(fetchFail(err.message));
         });
 };

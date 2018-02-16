@@ -1,18 +1,28 @@
 import {
 
     getDashboardData,
+    getListData,
     getListsData,
     getCampaignsData,
     getCampaignEventData,
     createListData,
+    createCampaignData,
     createContactData,
-    deleteListData
+    deleteListData,
+    deleteCampaignData,
+    deleteContactData
 
 } from './apiCalls';
 
 export const getDashboard = (userId) => dispatch => {
     dispatch(loading());
     return getDashboardData(dispatch, userId);
+
+};
+
+export const getList = (userId, listId) => dispatch => {
+    dispatch(loading());
+    return getListData(dispatch, userId, listId);
 
 };
 
@@ -40,17 +50,39 @@ export const createList = (userId, data, moveToScreen) => dispatch => {
 
 };
 
+export const createCampaign = (userId, data, moveToScreen) => dispatch => {
+    console.log('Campaign DATA', JSON.stringify(data, null, 2))
+    console.log('USERID', userId);
+
+    dispatch(loading());
+    //return createCampaignData(dispatch, userId, data, moveToScreen);
+
+};
+
+
 export const createContact = (userId, listId, data, moveToScreen) => dispatch => {
     dispatch(loading());
     console.log('i got this contact info? ', userId, listId, data);
     createContactData(dispatch, userId, listId, data, moveToScreen);
 
 };
-
 //done
 export const deleteList = (userId, listId) => dispatch => {
     dispatch(loading());
     return deleteListData(dispatch, userId, listId);
+
+};
+
+export const deleteCampaign = (userId, campaignId) => dispatch => {
+    dispatch(loading());
+    return deleteCampaignData(dispatch, userId, campaignId);
+
+};
+//done
+export const deleteContact = (userId, listId, contactId) => dispatch => {
+    dispatch(loading());
+    console.log('got this deleteContact', userId, listId, contactId);
+    return deleteContactData(dispatch, userId, listId, contactId);
 
 };
 
@@ -113,5 +145,12 @@ export const SET_CURRENT_LIST = 'SET_CURRENT_LIST';
 
 export const setCurrentList = (data) => ({
     type: SET_CURRENT_LIST,
+    data
+});
+
+export const SET_CURRENT_CAMPAIGN = 'SET_CURRENT_CAMPAIGN';
+
+export const setCurrentCampaign = (data) => ({
+    type: SET_CURRENT_CAMPAIGN,
     data
 });

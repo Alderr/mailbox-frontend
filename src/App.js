@@ -39,7 +39,7 @@ export class App extends Component {
                     <Route exact path='/loginPage' component={LoginPage} />
                     <Route path='/dashboard' component={Dashboard} />
                     <Route exact path='/dashboard/:page' component={dashboardBranches} />
-                    <Route exact path='/dashboard/:page/:id' component={null} />
+                    <Route exact path='/dashboard/:page/:id' component={idBranches} />
                     <Route exact path='/dashboard/:page/create' component={createBranches} />
 
                 </div>
@@ -79,6 +79,20 @@ const createBranches = ({match}) => {
     return <Home />;
 };
 
+const idBranches = ({match}) => {
+
+    console.log('switching - id branches!');
+    console.log(match);
+    if (match.params.page === 'lists') {
+        return <DashboardListView />;
+    }
+
+    else if (match.params.page === 'campaigns') {
+        return <DashboardCampaignView />;
+    }
+
+    return <Home />;
+};
 
 App.defualtProps = {
 

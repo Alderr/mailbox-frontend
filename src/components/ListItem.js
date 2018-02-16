@@ -14,7 +14,9 @@ export default class ListItem extends Component {
         console.log('--a list item---');
         return(
             <section key={this.props.id}>
-                <li key={this.props.id}> {this.props.listName} - {this.props.subscribers} subscribers </li>
+                <Link to={`/dashboard/lists/${this.props.id}`}>
+                    <li key={this.props.id}> {this.props.listName} - {this.props.subscribers} subscribers </li>
+                </Link>
             </section>
         );
     }

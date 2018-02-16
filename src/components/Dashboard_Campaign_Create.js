@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import loginGate from './requires-login-gate';
-import CampaignCreateForm from './CampaignCreateForm';
+import CampaignCreateSelect from './CampaignCreateSelect';
+import CampaignCreateBody from './CampaignCreateBody';
 
 
 import { Link } from 'react-router-dom';
 
-import { getCampaigns, createContact } from '../actions/userActions';
+import { getLists, createContact } from '../actions/userActions';
 
 export class DashboardCampaignCreate extends Component {
     constructor(props){
@@ -16,8 +17,13 @@ export class DashboardCampaignCreate extends Component {
           name: '',
           subject: '',
           sender: 'vernonmensah@gmail.com',
-
+          listsSelected: [],
+          body: ''
         }
+    }
+
+    componentWillMount() {
+        this.props.dispatch(getLists(this.props.userId));
     }
 
     handleChangeName = (value) => {
@@ -30,6 +36,11 @@ export class DashboardCampaignCreate extends Component {
       this.setState({subject: value});
     }
 
+    handleChangeLists = (value) => {
+      console.log('value changed', value);
+      this.setState({listsSelected: value});
+    }
+
     createCampaign = (data) => {
         this.props.dispatch(createContact(this.props.userId, this.props.listId, data, this.moveToListCampaignScreen));
     }
@@ -40,8 +51,24 @@ export class DashboardCampaignCreate extends Component {
     }
 
     render() {
+      console.log('PROPS!', this.props);
+
+      let loading;
+      if (this.props.loading) {
+          return (<h3>Loading...</h3>);
+      }
+
+
+      let error;
+      if (this.props.message) {
+          error = <h3>{this.props.message}</h3>;
+      }
+
+      if (!this.props.loading && this.props.lists && !this.props.message) {
+        
         return(
             <section>
+                {error}
                 <h1> Campaign - Create </h1>
                 <div>
                 <label htmlFor="name">Campaign Name:</label>
@@ -60,10 +87,12 @@ export class DashboardCampaignCreate extends Component {
 
                 <div>
                 <label htmlFor="name">Lists:</label>
+                <CampaignCreateSelect handleListsValue={e => this.handleChangeLists(e)}/>
                 </div>
 
                 <div>
                 <label htmlFor="name">Body:</label>
+                <CampaignCreateBody />
                 </div>
 
                 <button><Link to='/dashboard/campaigns'> Save </Link></button>
@@ -71,13 +100,18 @@ export class DashboardCampaignCreate extends Component {
 
             </section>
         );
+      }
+
+      return (<h1>Something went wrong</h1>);
     }
 }
 
 const mapStateToProps = Reducers => {
     return {
-        loggedIn: Reducers.loginReducer.loggedIn,
-        message: Reducers.loginReducer.message
+        userId: Reducers.loginReducer.userId,
+        loading: Reducers.userReducer.loading,
+        message: Reducers.userReducer.message,
+        lists: Reducers.userReducer.listsData
     };
 };
 

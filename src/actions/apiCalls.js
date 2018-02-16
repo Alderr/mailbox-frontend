@@ -4,6 +4,7 @@ import {
     getDashboardFail,
     getListsDone,
     getCampaignsDone,
+    getCampaignEventDone,
     fetchFail
 
 } from './userActions';
@@ -13,7 +14,7 @@ export const axios = require('axios');
 export const instance = axios.create({
     baseURL: process.env.REACT_APP_BASE_URL
 });
-
+//done
 export const findUser = (dispatch, user, pass, fail) => {
 
     return instance({
@@ -42,7 +43,7 @@ export const findUser = (dispatch, user, pass, fail) => {
             return dispatch(fail(err.message));
         });
 };
-
+//done
 export const getDashboardData = (dispatch, userId) => {
 
     return instance({
@@ -57,7 +58,7 @@ export const getDashboardData = (dispatch, userId) => {
         })
         .catch(err => {
             console.log(err);
-            return dispatch(getDashboardFail(err));
+            return dispatch(getDashboardFail(err.message));
         });
 };
 
@@ -81,7 +82,7 @@ export const getListsData = (dispatch, userId) => {
 export const getList = (dispatch, userId, listId) => {
 
 };
-
+//done
 export const getCampaignsData = (dispatch, userId) => {
 
     return instance({
@@ -96,14 +97,27 @@ export const getCampaignsData = (dispatch, userId) => {
         })
         .catch(err => {
             console.log(err);
-            return dispatch(fetchFail(err));
+            return dispatch(fetchFail(err.message));
         });
 };
 
 export const getCampaign = (dispatch, userId, campaignId) => {
 
 };
+//done
+export const getCampaignEventData = (dispatch, campaignEventId) => {
+    return instance({
+        method: 'get',
+        url: `eventData/${campaignEventId}`,
+    })
+        .then(response => {
+            console.log(response);
+            console.log('----RESPONSE_CAMPAIGN_EVENT_DATA----');
 
-export const getEventCampaign = (dispatch, userId, eventCampaignId) => {
-
+            return dispatch(getCampaignEventDone(response.data));
+        })
+        .catch(err => {
+            console.log(err);
+            return dispatch(fetchFail(err.message));
+        });
 };

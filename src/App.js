@@ -23,7 +23,7 @@ import DashboardListView from './components/Dashboard_List_View';
 import DashboardCampaignCreate from './components/Dashboard_Campaign_Create';
 import DashboardListCreate from './components/Dashboard_List_Create';
 
-import Report from './components/Reports';
+import Report_Event from './components/Report_Event';
 
 export class App extends Component {
     constructor(props){

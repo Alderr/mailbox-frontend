@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 
 import loginGate from './requires-login-gate';
 
+import { getCampaignEvent } from '../actions/userActions';
+
 export class DashboardCampaignView extends Component {
     constructor(props){
         super(props);
@@ -16,7 +18,7 @@ export class DashboardCampaignView extends Component {
     }
 
     componentWillMount() {
-        //this.props.dispatch(getCampaigns(this.props.userId));
+        this.props.dispatch(getCampaignEvent(this.props.campaign.campaign_event_data_id));
     }
 
     render() {
@@ -47,7 +49,9 @@ export class DashboardCampaignView extends Component {
 const mapStateToProps = (Reducers, props) => {
     return {
         userId: Reducers.loginReducer.userId,
-        campaign: Reducers.userReducer.campaignsData.filter(campaign => campaign._id === props.id)[0]
+        loading: Reducers.userReducer.loading,
+        campaign: Reducers.userReducer.campaignsData.filter(campaign => campaign._id === props.id)[0],
+        campaignEvent: Reducers.userReducer.campaignEventData
     };
 };
 

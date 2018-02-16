@@ -23,6 +23,7 @@ import DashboardListView from './components/Dashboard_List_View';
 import DashboardCampaignCreate from './components/Dashboard_Campaign_Create';
 import DashboardListCreate from './components/Dashboard_List_Create';
 
+import Report from './components/Reports';
 
 export class App extends Component {
     constructor(props){
@@ -39,9 +40,11 @@ export class App extends Component {
                     <Route exact path='/loginPage' component={LoginPage} />
                     <Route path='/dashboard' component={Dashboard} />
                     <Route exact path='/dashboard/:page' component={dashboardBranches} />
-                    <Route exact path='/dashboard/:page/:id' component={idBranches} />
                     <Route exact path='/dashboard/:page/create' component={createBranches} />
+                    <Route exact path='/dashboard/:page/id/:id' component={idBranches} />
 
+                    <Route exact path='/dashboard/campaigns/id/:id/email' component={null} />
+                    <Route exact path='/dashboard/campaigns/id/:id/report/:event' component={null} />
                 </div>
             </Router>
         );
@@ -84,11 +87,11 @@ const idBranches = ({match}) => {
     console.log('switching - id branches!');
     console.log(match);
     if (match.params.page === 'lists') {
-        return <DashboardListView />;
+        return <DashboardListView id={match.params.id} />;
     }
 
     else if (match.params.page === 'campaigns') {
-        return <DashboardCampaignView />;
+        return <DashboardCampaignView id={match.params.id} />;
     }
 
     return <Home />;

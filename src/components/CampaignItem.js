@@ -15,7 +15,7 @@ export default class CampaignItem extends Component {
         return(
             <section>
                 <li>
-                    <Link to={`/dashboard/campaigns/${this.props.id}`}>
+                    <Link to={`/dashboard/campaigns/id/${this.props.id}`}>
                         {this.props.campaignName} - Sent on {this.props.date}
                     </Link>
                 </li>

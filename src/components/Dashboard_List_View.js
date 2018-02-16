@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 
 import loginGate from './requires-login-gate';
 
+import { getCampaigns } from '../actions/userActions';
+
 export class DashboardListView extends Component {
     constructor(props){
         super(props);
@@ -14,6 +16,7 @@ export class DashboardListView extends Component {
 
         };
     }
+
     createContacts() {
         return this.props.list.contacts.map(contact => {
             return (
@@ -21,6 +24,7 @@ export class DashboardListView extends Component {
                     <p>{contact.firstName} {contact.lastName}</p>
                     <p>{contact.email}</p>
                     <p>{contact.date}</p>
+                    <button onClick={null}> Delete </button>
                 </li>);
         });
     }
@@ -33,7 +37,15 @@ export class DashboardListView extends Component {
 
         return(
             <section>
-                <h1> List: id </h1>
+                <h1> List: {this.props.list.name} </h1>
+                <div>
+                    <button>
+
+                        <Link to={`/dashboard/lists/id/${this.props.id}/createContact`}>
+                          Add Contact
+                        </Link>
+                    </button>
+                </div>
                 <ul>
                     {this.createContacts()}
                 </ul>

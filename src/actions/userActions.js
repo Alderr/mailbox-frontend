@@ -5,6 +5,7 @@ import {
     getCampaignsData,
     getCampaignEventData,
     createListData,
+    createContactData,
     deleteListData
 
 } from './apiCalls';
@@ -39,12 +40,19 @@ export const createList = (userId, data, moveToScreen) => dispatch => {
 
 };
 
+export const createContact = (userId, listId, data, moveToScreen) => dispatch => {
+    dispatch(loading());
+    console.log('i got this contact info? ', userId, listId, data);
+    createContactData(dispatch, userId, listId, data, moveToScreen);
+
+};
+
+//done
 export const deleteList = (userId, listId) => dispatch => {
     dispatch(loading());
     return deleteListData(dispatch, userId, listId);
 
 };
-
 
 export const LOADING = 'LOADING';
 
@@ -56,6 +64,13 @@ export const GETDASHBOARD_DONE = 'GETDASHBOARD_DONE';
 
 export const getDashboardDone = (data) => ({
     type: GETDASHBOARD_DONE,
+    data
+});
+
+export const GETLIST_DONE = 'GETLIST_DONE';
+
+export const getListDone = (data) => ({
+    type: GETLIST_DONE,
     data
 });
 
@@ -92,4 +107,11 @@ export const FETCH_FAIL = 'FETCH_FAIL';
 export const fetchFail = (error) => ({
     type: FETCH_FAIL,
     error
+});
+
+export const SET_CURRENT_LIST = 'SET_CURRENT_LIST';
+
+export const setCurrentList = (data) => ({
+    type: SET_CURRENT_LIST,
+    data
 });

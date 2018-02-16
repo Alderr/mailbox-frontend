@@ -22,6 +22,7 @@ import DashboardListView from './components/Dashboard_List_View';
 
 import DashboardCampaignCreate from './components/Dashboard_Campaign_Create';
 import DashboardListCreate from './components/Dashboard_List_Create';
+import ContactCreate from './components/Contact_Create';
 
 import Report_Event from './components/Report_Event';
 
@@ -41,8 +42,9 @@ export class App extends Component {
                     <Route path='/dashboard' component={Dashboard} />
                     <Route exact path='/dashboard/:page' component={dashboardBranches} />
                     <Route exact path='/dashboard/:page/create' component={createBranches} />
-                    <Route exact path='/dashboard/:page/id/:id' component={idBranches} />
 
+                    <Route exact path='/dashboard/:page/id/:id' component={idBranches} />
+                    <Route exact path='/dashboard/lists/id/:id/createContact' component={ContactCreate} />
                     <Route exact path='/dashboard/campaigns/id/:id/email' component={null} />
                     <Route exact path='/dashboard/campaigns/id/:id/report/:event' component={null} />
                 </div>

@@ -4,6 +4,7 @@ const initialStore = {
     dashboardData: '',
     listsData: '',
     listData: '',
+    currentList: '',
     campaignsData: '',
     campaignData: '',
     campaignEventData: ''
@@ -33,6 +34,22 @@ export default(state = initialStore, action) => {
             message: '',
             loading: false,
             listsData: action.data
+        });
+    }
+
+    if (action.type === 'GETLIST_DONE') {
+        console.log(action.data);
+
+        return Object.assign({}, state, {
+            message: '',
+            loading: false,
+            listsData: state.listsData.map(list => {
+                if (action.data.id === list.id) {
+                    return action.data;
+                }
+
+                return list;
+            })
         });
     }
 
@@ -67,6 +84,14 @@ export default(state = initialStore, action) => {
         return Object.assign({}, state, {
             loading: false,
             message: action.error
+        });
+    }
+
+    if (action.type === 'SET_CURRENT_LIST') {
+        console.log(action);
+        console.log(action.data);
+        return Object.assign({}, state, {
+            currentList: action.data,
         });
     }
 

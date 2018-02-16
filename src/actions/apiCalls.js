@@ -3,6 +3,7 @@ import {
     getDashboardDone,
     getDashboardFail,
     getLists,
+    getListDone,
     getListsDone,
     getCampaignsDone,
     getCampaignEventDone,
@@ -81,7 +82,20 @@ export const getListsData = (dispatch, userId) => {
 };
 
 export const getList = (dispatch, userId, listId) => {
+    return instance({
+        method: 'get',
+        url: `list/${userId}/${listId}`,
+    })
+        .then(response => {
+            console.log(response);
+            console.log('----RESPONSE_LIST----');
 
+            return dispatch(getListsDone(response.data));
+        })
+        .catch(err => {
+            console.log(err);
+            return dispatch(fetchFail(err.message));
+        });
 };
 //done
 export const getCampaignsData = (dispatch, userId) => {
@@ -143,6 +157,29 @@ export const createListData = (dispatch, userId, data, moveToScreen) => {
             console.log('err', err);
             return dispatch(fetchFail(err.message));
         });
+};
+
+export const createContactData = (dispatch, userId, listId, data, moveToScreen) => {
+    const { firstName, lastName, email } = data;
+    console.log('I was given ', firstName, lastName, email);
+    // return instance({
+    //     method: 'post',
+    //     url: `contact/${userId}/${listId}/add`,
+    //     data: {
+    //         name
+    //     }
+    // })
+    //     .then(response => {
+    //         console.log(response);
+    //         console.log('----RESPONSE_CREATE_LIST----');
+    //
+    //         //getList
+    //         return moveToScreen();
+    //     })
+    //     .catch(err => {
+    //         console.log('err', err);
+    //         return dispatch(fetchFail(err.message));
+    //     });
 };
 
 export const deleteListData = (dispatch, userId, listId) => {

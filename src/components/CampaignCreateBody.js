@@ -4,13 +4,6 @@ import { Link } from 'react-router-dom';
 import $ from 'jquery';
 import ReactSummernote from 'react-summernote';
 import loginGate from './requires-login-gate';
-import 'react-summernote/dist/react-summernote.css'; // import styles
-import 'popper.js';
-import 'bootstrap';
-import '../dropdown'
-
-import FroalaEditorView from 'react-froala-wysiwyg/FroalaEditorView';
-import FroalaEditor from 'react-froala-wysiwyg';
 
 import 'font-awesome/css/font-awesome.css';
 
@@ -79,19 +72,7 @@ export class CampaignCreateBody extends Component {
         return(
             <section>
             <div>
-              <FroalaEditor
-        tag='textarea'
-        model={this.state.content}
-    onModelChange={(e) => this.handleModelChange(e)}  />
-            </div>
 
-            <div>
-            <FroalaEditorView
-            config={this.state.config}
-            tag='othertextarea'
-              model={this.state.content}
-
-            />
             </div>
             </section>
         );

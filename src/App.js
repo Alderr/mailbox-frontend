@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 import { connect } from 'react-redux';
@@ -26,7 +25,7 @@ import ContactCreate from './components/Contact_Create';
 
 import Report_Event from './components/Report_Event';
 
-export class App extends Component {
+export default class App extends Component {
     constructor(props){
         super(props);
     }
@@ -102,11 +101,3 @@ const idBranches = ({match}) => {
 App.defualtProps = {
 
 };
-
-const mapStateToProps = Reducers => {
-    return {
-        actions: Reducers.reducer.actions,
-    };
-};
-
-export default connect(mapStateToProps)(App);

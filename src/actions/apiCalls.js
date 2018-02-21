@@ -202,6 +202,13 @@ export const createContactData = (dispatch, userId, listId, data, moveToScreen) 
             console.log(response);
             console.log('----RESPONSE_CREATE_LIST----');
 
+            /*
+            getList allows the new items or delete items
+            to render.
+            - calls api for the changed list
+            - new data is fed to specific listsData
+            */
+
             dispatch(getList(userId, listId));
             return moveToScreen();
         })

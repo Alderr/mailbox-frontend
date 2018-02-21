@@ -72,7 +72,8 @@ export class CampaignCreateBody extends Component {
         return(
             <section>
             <div>
-
+              <h1>Campaign-Body!!</h1>
+                <button><Link to='/dashboard/campaigns'> Send Campaign! </Link></button>
             </div>
             </section>
         );

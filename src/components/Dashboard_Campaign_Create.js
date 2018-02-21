@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Route, Switch } from 'react-router-dom';
 import loginGate from './requires-login-gate';
-import CampaignCreateSelect from './CampaignCreateSelect';
+import CampaignCreateForm from './CampaignCreateForm';
 import CampaignCreateBody from './CampaignCreateBody';
 
 
@@ -26,23 +27,13 @@ export class DashboardCampaignCreate extends Component {
         this.props.dispatch(getLists(this.props.userId));
     }
 
-    handleChangeName = (value) => {
-      console.log(value);
-      this.setState({name: value});
-    }
-
-    handleChangeSubject = (value) => {
-      console.log(value);
-      this.setState({subject: value});
-    }
-
-    handleChangeLists = (value) => {
-      console.log('value changed', value);
-      this.setState({listsSelected: value});
-    }
-
     createCampaign = (data) => {
         this.props.dispatch(createContact(this.props.userId, this.props.listId, data, this.moveToListCampaignScreen));
+    }
+
+    saveCampaignData = (data) => {
+      console.log(data);
+      this.setState(data);
     }
 
     moveToListCampaignScreen = () => {
@@ -50,54 +41,47 @@ export class DashboardCampaignCreate extends Component {
       this.props.history.push(`/dashboard/lists/id/${this.props.listId}`);
     }
 
+    passPropsToForm = (props) => {
+      console.log('passing propss..');
+      return <CampaignCreateForm
+        saveCampaignData={this.saveCampaignData}
+        {...props} />;
+    }
+
+    passProps = (props, yourProps, Component) => {
+      console.log('dynamically passing props..');
+      console.log(props.match);
+      return <Component
+        {... yourProps}
+        {...props} />;
+    }
+
     render() {
-      console.log('PROPS!', this.props);
+      console.log('PROPS! Campaign Create', this.props);
+      const { saveCampaignData } = this;
+      const { match, location, history } = this.props;
+
 
       let loading;
       if (this.props.loading) {
           return (<h3>Loading...</h3>);
       }
 
-
       let error;
       if (this.props.message) {
           error = <h3>{this.props.message}</h3>;
       }
 
-      if (!this.props.loading && this.props.lists && !this.props.message) {
-        
+      if (!this.props.loading && this.props.lists) {
+
+
+        console.log("url: ", match.url);
         return(
             <section>
+              <h1>Campaign Create! </h1>
                 {error}
-                <h1> Campaign - Create </h1>
-                <div>
-                <label htmlFor="name">Campaign Name:</label>
-                <input type="text" onChange={ e => this.handleChangeName(e.currentTarget.value)} />
-                </div>
-
-                <div>
-                <label htmlFor="subject">Subject Title:</label>
-                <input type="text" onChange={e => this.handleChangeSubject(e.currentTarget.value)} />
-                </div>
-
-                <div>
-                <label htmlFor="name">Sender:</label>
-                <input type="text" value={this.state.sender} readOnly/>
-                </div>
-
-                <div>
-                <label htmlFor="name">Lists:</label>
-                <CampaignCreateSelect handleListsValue={e => this.handleChangeLists(e)}/>
-                </div>
-
-                <div>
-                <label htmlFor="name">Body:</label>
-                <CampaignCreateBody />
-                </div>
-
-                <button><Link to='/dashboard/campaigns'> Save </Link></button>
-
-
+                <Route exact path={`/dashboard/campaigns/create/email`} component={(props) => this.passProps(props, { saveCampaignData }, CampaignCreateBody)} />
+                <Route exact path={`/dashboard/campaigns/create`} component={(props) => this.passProps(props, { saveCampaignData }, CampaignCreateForm )} />
             </section>
         );
       }

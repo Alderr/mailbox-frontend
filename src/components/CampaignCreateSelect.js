@@ -5,23 +5,7 @@ import Select from 'react-select';
 
 import loginGate from './requires-login-gate';
 
-import { required, nonEmpty } from '../validators';
-
 import 'react-select/dist/react-select.css';
-
-const FLAVOURS = [
-    { label: 'Chocolate', value: 'chocolate' },
-    { label: 'Vanilla', value: 'vanilla' },
-    { label: 'Strawberry', value: 'strawberry' },
-    { label: 'Caramel', value: 'caramel' },
-    { label: 'Cookies and Cream', value: 'cookiescream' },
-    { label: 'Peppermint', value: 'peppermint' },
-];
-
-const WHY_WOULD_YOU = [
-	{ label: 'Chocolate (are you crazy?)', value: 'chocolate', disabled: true },
-].concat(FLAVOURS.slice(1));
-
 
 export class CampaignCreateSelect extends Component {
     constructor(props){
@@ -37,13 +21,9 @@ export class CampaignCreateSelect extends Component {
         };
     }
 
-    onSubmit(values) {
-        this.props.createContact(values);
-    }
-
     handleSelectChange = (value) => {
         console.log('You\'ve selected:', value);
-        this.props.handleListsValue(value);
+        this.props.handleChangeLists(value);
         this.setState({ value });
     }
 
@@ -54,7 +34,6 @@ export class CampaignCreateSelect extends Component {
     }
 
     render() {
-        const options = crazy ? WHY_WOULD_YOU : FLAVOURS;
         const { crazy, disabled, stayOpen, value } = this.state;
         console.log('PROPS===========',this.props);
 
@@ -74,7 +53,7 @@ export class CampaignCreateSelect extends Component {
                 </div>
             );
         }
-        
+
         return(
             <section>
                 <h1>Hi!</h1>

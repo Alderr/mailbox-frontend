@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Link } from 'react-router-dom';
+
 import loginGate from './requires-login-gate';
 import CampaignCreateForm from './CampaignCreateForm';
 import CampaignCreateBody from './CampaignCreateBody';
-
-
-import { Link } from 'react-router-dom';
 
 import { getLists, createContact } from '../actions/userActions';
 
@@ -19,7 +17,7 @@ export class DashboardCampaignCreate extends Component {
           subject: '',
           sender: 'vernonmensah@gmail.com',
           listsSelected: [],
-          body: ''
+          content: ''
         }
     }
 
@@ -36,16 +34,24 @@ export class DashboardCampaignCreate extends Component {
       this.setState(data);
     }
 
+
+    sendBodyData = () => {
+      console.log(this.state.content);
+    }
+
+    handleModelChange = (model) => {
+      console.log(model);
+      this.setState({content: model})
+    }
+
+    handleInputChange = (e) => {
+      console.log(e.target.value);
+      this.setState({content: e.target.value})
+    }
+
     moveToListCampaignScreen = () => {
       console.log('contact id...', this.props.listId);
       this.props.history.push(`/dashboard/lists/id/${this.props.listId}`);
-    }
-
-    passPropsToForm = (props) => {
-      console.log('passing propss..');
-      return <CampaignCreateForm
-        saveCampaignData={this.saveCampaignData}
-        {...props} />;
     }
 
     passProps = (props, yourProps, Component) => {
@@ -58,8 +64,9 @@ export class DashboardCampaignCreate extends Component {
 
     render() {
       console.log('PROPS! Campaign Create', this.props);
-      const { saveCampaignData } = this;
+      const { saveCampaignData, handleModelChange, handleInputChange } = this;
       const { match, location, history } = this.props;
+      const { content } = this.state;
 
 
       let loading;
@@ -75,13 +82,13 @@ export class DashboardCampaignCreate extends Component {
       if (!this.props.loading && this.props.lists) {
 
 
-        console.log("url: ", match.url);
         return(
             <section>
               <h1>Campaign Create! </h1>
                 {error}
-                <Route exact path={`/dashboard/campaigns/create/email`} component={(props) => this.passProps(props, { saveCampaignData }, CampaignCreateBody)} />
                 <Route exact path={`/dashboard/campaigns/create`} component={(props) => this.passProps(props, { saveCampaignData }, CampaignCreateForm )} />
+                <Route exact path={`/dashboard/campaigns/create/email`} component={(props) => this.passProps(props, { saveCampaignData, handleModelChange, content }, CampaignCreateBody)} />
+                <Route exact path={`/dashboard/campaigns/create/done`} component={null} />
             </section>
         );
       }

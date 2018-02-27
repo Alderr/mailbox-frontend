@@ -1,83 +1,223 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import $ from 'jquery';
-import ReactSummernote from 'react-summernote';
 import loginGate from './requires-login-gate';
 
-import 'font-awesome/css/font-awesome.css';
+// Require Editor JS files.
+import 'froala-editor/js/froala_editor.pkgd.min.js';
 
-// import 'bootstrap/js/modal';
-// import 'bootstrap/js/dropdown';
-// import 'bootstrap/js/tooltip';
-// import 'bootstrap/dist/css/bootstrap.css';
+// Require Editor CSS files.
+import 'froala-editor/css/froala_style.min.css';
+import 'froala-editor/css/froala_editor.pkgd.min.css';
+import 'froala-editor/css/themes/dark.min.css';
+// Require Font Awesome.
+import 'font-awesome/css/font-awesome.css';
 
 import 'froala-editor/js/froala_editor.pkgd.min.js';
 import 'froala-editor/css/froala_editor.pkgd.min.css';
 
+//require devices
+import '../css/devices.min.css';
+
+//CSS
+import '../css/campaignCreateBody.css';
+
+import FroalaEditor from 'react-froala-wysiwyg';
+import FroalaEditorView from 'react-froala-wysiwyg/FroalaEditorView';
+
+import $ from 'jquery';
+window.$ = $;
+
 export class CampaignCreateBody extends Component {
     constructor(props){
         super(props);
+        this.config = {
+            height: 900,
+            heightMin: 300,
+            placeholderText: 'Add a Title',
+            charCounterCount: false,
+            toolbarInline: false,
+            htmlAllowedEmptyTags: ['table', 'strong', 'style', 'p', 'h1', 'div', 'h2','a'],
+            toolbarButtons: [
+                'html',
+                'fullScreen',
+                'bold',
+                'italic',
+                'underline',
+                'paragraphFormat',
+                'align',
+                'subscript',
+                'superscript',
+                'fontFamily',
+                'color',
+                'fontSize',
+                'undo',
+                'redo',
+                'insertImage'
+            ],
+            toolbarButtonsXS: [
+                'html',
+                'fullScreen',
+                'bold',
+                'italic',
+                'underline',
+                'fontFamily',
+                'color',
+                'fontSize',
+                'undo',
+                'redo',
+                'insertImage'
+            ],
+            toolbarButtonsMD: [
+                'html',
+                'fullScreen',
+                'bold',
+                'italic',
+                'underline',
+                'strikeThrough',
+                'subscript',
+                'superscript',
+                'fontFamily',
+                'color',
+                'fontSize',
+                'undo',
+                'redo',
+                'insertImage'
+            ],
+            toolbarButtonsSM: [
+                'html',
+                'fullScreen',
+                'bold',
+                'italic',
+                'underline',
+                'strikeThrough',
+                'subscript',
+                'superscript',
+                'fontFamily',
+                'color',
+                'fontSize',
+                'undo',
+                'redo',
+                'insertImage'
+            ],
+            theme: 'dark',
+            events: {
+                'froalaEditor.initialized': function(e, editor) {
+                    console.log('initialized');
+                    console.log(editor);
+                    console.log(editor.selection.get());
+                    editor.codeView.toggle();
+
+                    /* two listeners that wait till user doesnt type for 2 secs
+           and updateS screen*/
+                    document.querySelector('.main').addEventListener('keyup', () => {
+                        console.log('create!');
+                        clearTimeout(this.keyDownTimer);
+
+                        if (editor.codeView.isActive()){
+
+                            this.keyDownTimer = setTimeout(() => {
+
+                                //get html from codeview & set it for reg. view
+                                editor.html.set(editor.codeView.get());
+
+                                //focus cursor back to the end of the HTML & show it
+                                editor.selection.setAtEnd(document.querySelector('.fr-code'));
+                                editor.selection.restore();
+
+                            }, 3 * 1000); //2 sec
+
+                        }
+
+                    });
+
+                    document.querySelector('.main').addEventListener('keydown', () => {
+                        console.log('delete it!');
+
+                        if (editor.codeView.isActive()){
+                            console.log('delete it!');
+                            clearTimeout(this.keyDownTimer);
+
+                        }
+
+                    });
+
+                },
+                'froalaEditor.html.get': function(e, editor, html) {
+                    console.log('Getting!');
+
+                }
+            }
+        };
 
         this.state = {
             value: '',
-            content: '<span>My Document\'s Title</span>',
-            config: {
-              toolbarButtons: ['undo', 'redo', 'bold', 'italic', 'underline'],
-              toolbarButtonsXS: ['undo', 'redo', 'bold', 'italic', 'underline'],
-              toolbarButtonsMD: ['undo', 'redo', 'bold', 'italic', 'underline'],
-              toolbarButtonsSM: ['undo', 'redo', 'bold', 'italic', 'underline']
-            }
+            content: '<span>My Document\'s Title</span>'
         };
     }
 
-    onChange = (content) => {
-        //this.setState({value: content});
-        console.log('onChange', content);
-
-    }
-
-    onSubmit(values) {
-        this.props.createContact(values);
-    }
-
-    handleModelChange = (model) => {
-     this.setState({
-       content: model
-     });
- }
-
-
     render() {
 
-        console.log('PROPS===========',this.props);
+        const { handleModelChange, content } = this.props;
 
-        let error;
-        if (this.props.error) {
-            error = (
-                <div className="form-error" aria-live="polite">
-                    {this.props.error}
-                </div>
-            );
-        }
-        let message;
-        if (this.props.message) {
-            message = (
-                <div className="form-error" aria-live="polite">
-                    {this.props.message}
-                </div>
-            );
-        }
-
-        return(
-            <section>
-            <div>
-              <h1>Campaign-Body!!</h1>
-                <button><Link to='/dashboard/campaigns'> Send Campaign! </Link></button>
+        return (<div className='main'>
+            <div className='editorBox'>
+                <FroalaEditor tag='textarea' config={this.config} model={content} onModelChange={handleModelChange}/>
             </div>
-            </section>
-        );
+            <div className='codePreview'>
+
+                <div className="marvel-device iphone-x">
+                    <div className="notch">
+                        <div className="camera"></div>
+                        <div className="speaker"></div>
+                    </div>
+                    <div className="top-bar"></div>
+                    <div className="sleep"></div>
+                    <div className="bottom-bar"></div>
+                    <div className="volume"></div>
+                    <div className="overflow">
+                    </div>
+                    <div className="inner-shadow"></div>
+                    <div className="screen">
+                        <div className='content'>
+                            <FroalaEditorView model={content}/>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>);
     }
+    // render() {
+    //
+    //     console.log('PROPS===========', this.props);
+    //
+    //     let error;
+    //     if (this.props.error) {
+    //         error = (
+    //             <div className="form-error" aria-live="polite">
+    //                 {this.props.error}
+    //             </div>
+    //         );
+    //     }
+    //     let message;
+    //     if (this.props.message) {
+    //         message = (
+    //             <div className="form-error" aria-live="polite">
+    //                 {this.props.message}
+    //             </div>
+    //         );
+    //     }
+    //
+    //     return(
+    //         <section>
+    //             <div>
+    //                 <h1>Campaign-Body!!</h1>
+    //                 <button><Link to='/dashboard/campaigns'> Send Campaign! </Link></button>
+    //             </div>
+    //         </section>
+    //     );
+    // }
 }
 
 const mapStateToProps = Reducers => {

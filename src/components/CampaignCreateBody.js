@@ -10,11 +10,9 @@ import 'froala-editor/js/froala_editor.pkgd.min.js';
 import 'froala-editor/css/froala_style.min.css';
 import 'froala-editor/css/froala_editor.pkgd.min.css';
 import 'froala-editor/css/themes/dark.min.css';
+
 // Require Font Awesome.
 import 'font-awesome/css/font-awesome.css';
-
-import 'froala-editor/js/froala_editor.pkgd.min.js';
-import 'froala-editor/css/froala_editor.pkgd.min.css';
 
 //require devices
 import '../css/devices.min.css';
@@ -31,13 +29,21 @@ window.$ = $;
 export class CampaignCreateBody extends Component {
     constructor(props){
         super(props);
+        this.keyDownTimer;
+
+        this.state = {
+            content: props.template,
+        };
+
         this.config = {
             height: 900,
             heightMin: 300,
             placeholderText: 'Add a Title',
             charCounterCount: false,
             toolbarInline: false,
-            htmlAllowedEmptyTags: ['table', 'strong', 'style', 'p', 'h1', 'div', 'h2','a'],
+            htmlAllowedTags: ['style'],
+            htmlAllowedEmptyTags: ['table', 'strong', 'p', 'h1', 'div', 'h2','a'],
+            htmlRemoveTags: ['script'],
             toolbarButtons: [
                 'html',
                 'fullScreen',
@@ -150,22 +156,30 @@ export class CampaignCreateBody extends Component {
             }
         };
 
-        this.state = {
-            value: '',
-            content: '<span>My Document\'s Title</span>'
-        };
+    }
+
+    handleModelChange = (model) => {
+      console.log(model);
+      this.setState({content: model})
     }
 
     render() {
 
-        const { handleModelChange, content } = this.props;
+        const {  } = this.props;
+        const { handleModelChange } = this;
+        const { content } = this.state;
 
-        return (<div className='main'>
+        console.log('CONTENT: ', content);
+
+        return (
+        <div className='main'>
+            <div>
+              <button onClick={() => console.log('Clicked?')}>Save me!</button>
+            </div>
             <div className='editorBox'>
-                <FroalaEditor tag='textarea' config={this.config} model={content} onModelChange={handleModelChange}/>
+                <FroalaEditor tag='textarea' config={this.config} model={content} onModelChange={(model) => handleModelChange(model)}/>
             </div>
             <div className='codePreview'>
-
                 <div className="marvel-device iphone-x">
                     <div className="notch">
                         <div className="camera"></div>
@@ -188,36 +202,6 @@ export class CampaignCreateBody extends Component {
             </div>
         </div>);
     }
-    // render() {
-    //
-    //     console.log('PROPS===========', this.props);
-    //
-    //     let error;
-    //     if (this.props.error) {
-    //         error = (
-    //             <div className="form-error" aria-live="polite">
-    //                 {this.props.error}
-    //             </div>
-    //         );
-    //     }
-    //     let message;
-    //     if (this.props.message) {
-    //         message = (
-    //             <div className="form-error" aria-live="polite">
-    //                 {this.props.message}
-    //             </div>
-    //         );
-    //     }
-    //
-    //     return(
-    //         <section>
-    //             <div>
-    //                 <h1>Campaign-Body!!</h1>
-    //                 <button><Link to='/dashboard/campaigns'> Send Campaign! </Link></button>
-    //             </div>
-    //         </section>
-    //     );
-    // }
 }
 
 const mapStateToProps = Reducers => {

@@ -17,7 +17,7 @@ export class DashboardCampaignCreate extends Component {
           subject: '',
           sender: 'vernonmensah@gmail.com',
           listsSelected: [],
-          content: ''
+          template: '<h1>Hello. ^^</h1><h2>Put your email here!</h2>'
         }
     }
 
@@ -32,11 +32,6 @@ export class DashboardCampaignCreate extends Component {
     saveCampaignData = (data) => {
       console.log(data);
       this.setState(data);
-    }
-
-
-    sendBodyData = () => {
-      console.log(this.state.content);
     }
 
     handleModelChange = (model) => {
@@ -66,7 +61,7 @@ export class DashboardCampaignCreate extends Component {
       console.log('PROPS! Campaign Create', this.props);
       const { saveCampaignData, handleModelChange, handleInputChange } = this;
       const { match, location, history } = this.props;
-      const { content } = this.state;
+      const { template } = this.state;
 
 
       let loading;
@@ -87,7 +82,7 @@ export class DashboardCampaignCreate extends Component {
               <h1>Campaign Create! </h1>
                 {error}
                 <Route exact path={`/dashboard/campaigns/create`} component={(props) => this.passProps(props, { saveCampaignData }, CampaignCreateForm )} />
-                <Route exact path={`/dashboard/campaigns/create/email`} component={(props) => this.passProps(props, { saveCampaignData, handleModelChange, content }, CampaignCreateBody)} />
+                <Route exact path={`/dashboard/campaigns/create/email`} component={(props) => this.passProps(props, { saveCampaignData, handleModelChange, template }, CampaignCreateBody)} />
                 <Route exact path={`/dashboard/campaigns/create/done`} component={null} />
             </section>
         );

@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.17.1",
     "font-awesome": "^4.7.0",
+    "froala-editor": "^2.6.6",
     "jquery": "^3.3.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",

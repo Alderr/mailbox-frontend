@@ -30,7 +30,15 @@ export class CampaignCreateForm extends Component {
 
     handleChangeLists = (value) => {
       console.log('value changed', value);
-      this.setState({listsSelected: value});
+      let newArr = value.split(',');
+      this.setState({listsSelected: newArr});
+    }
+
+    saveData() {
+      console.log('saving dataaaa!');
+      const { name, subject, listsSelected } = this.state;
+      this.props.saveCampaignData({name, subject, listsSelected});
+      this.props.history.push('/dashboard/campaigns/create/email');
     }
 
 
@@ -59,7 +67,7 @@ export class CampaignCreateForm extends Component {
                     <CampaignCreateSelect handleChangeLists={e => this.handleChangeLists(e)}/>
                 </div>
 
-                <button><Link to='/dashboard/campaigns/create/email'> Create Email </Link></button>
+                <button onClick={() => this.saveData()}> Create Email </button>
 
 
             </section>

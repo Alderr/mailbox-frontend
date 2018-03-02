@@ -39,8 +39,12 @@
 }
 
 .content {
-  height: 900px;
+  height: 800px;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
-  padding-top: 50px;
+  /* padding-top: 50px; */
+}
+
+body table td, body table th {
+  border: none !important;
 }

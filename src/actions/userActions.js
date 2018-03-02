@@ -50,15 +50,22 @@ export const createList = (userId, data, moveToScreen) => dispatch => {
 
 };
 
-export const createCampaign = (userId, data, moveToScreen) => dispatch => {
-    console.log('Campaign DATA', JSON.stringify(data, null, 2))
+export const createCampaign = (userId, data) => dispatch => {
+    console.log('Campaign DATA', JSON.stringify(data, null, 2));
     console.log('USERID', userId);
 
     dispatch(loading());
-    //return createCampaignData(dispatch, userId, data, moveToScreen);
+
+    // return createCampaignData(dispatch, userId, data)
+    //     .then(data => {
+    //         console.log(data);
+    //     })
+    //     .catch(err => {
+    //         console.log(err);
+    //         dispatch(fetchFail());
+    //     });
 
 };
-
 
 export const createContact = (userId, listId, data, moveToScreen) => dispatch => {
     dispatch(loading());

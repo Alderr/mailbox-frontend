@@ -38,12 +38,18 @@ export class CampaignCreateBody extends Component {
         this.config = {
             height: 900,
             heightMin: 300,
-            placeholderText: 'Add a Title',
-            charCounterCount: false,
-            toolbarInline: false,
-            htmlAllowedTags: ['style'],
-            htmlAllowedEmptyTags: ['table', 'strong', 'p', 'h1', 'div', 'h2','a'],
+            // iframe: true,
+            // fullPage: true,
+            // htmlAllowedTags: ['.*'],
+            // // htmlAllowedEmptyTags: ['html','head', 'body','table', 'strong', 'p', 'h1', 'div', 'h2','a'],
             htmlRemoveTags: ['script'],
+            lineBreakerTags: [''],
+            lineBreakerOffset: 0,
+            linkAlwaysBlank: true,
+            linkText: true,
+            fullPage: true,
+            lineBreakerOffset: 0,
+            lineBreakerTags: [''],
             toolbarButtons: [
                 'html',
                 'fullScreen',
@@ -108,6 +114,7 @@ export class CampaignCreateBody extends Component {
             ],
             theme: 'dark',
             events: {
+
                 'froalaEditor.initialized': function(e, editor) {
                     console.log('initialized');
                     console.log(editor);
@@ -115,7 +122,7 @@ export class CampaignCreateBody extends Component {
                     editor.codeView.toggle();
 
                     /* two listeners that wait till user doesnt type for 2 secs
-           and updateS screen*/
+                      and updateS screen*/
                     document.querySelector('.main').addEventListener('keyup', () => {
                         console.log('create!');
                         clearTimeout(this.keyDownTimer);
@@ -157,6 +164,10 @@ export class CampaignCreateBody extends Component {
         };
 
     }
+    saveData = () => {
+      this.props.saveCampaignData({html: this.state.content});
+      this.props.history.push('/dashboard/campaigns/create/done');
+    }
 
     handleModelChange = (model) => {
       console.log(model);
@@ -169,15 +180,13 @@ export class CampaignCreateBody extends Component {
         const { handleModelChange } = this;
         const { content } = this.state;
 
-        console.log('CONTENT: ', content);
-
         return (
         <div className='main'>
             <div>
-              <button onClick={() => console.log('Clicked?')}>Save me!</button>
+              <button onClick={() => this.saveData()}>Save me!</button>
             </div>
             <div className='editorBox'>
-                <FroalaEditor tag='textarea' config={this.config} model={content} onModelChange={(model) => handleModelChange(model)}/>
+                <FroalaEditor tag='div' config={this.config} model={content} onModelChange={(model) => handleModelChange(model)}/>
             </div>
             <div className='codePreview'>
                 <div className="marvel-device iphone-x">

@@ -14,10 +14,11 @@ export class DashboardCampaignCreate extends Component {
         super(props);
 
         this.state = {
-          sender: 'vernonmensah@gmail.com',
           template: '',
           othertemp: '<html><body><h1>Hello. ^^</h1><h2>Put your email here!</h2></body></html>',
-          data: {}
+          data: {
+
+          }
         }
     }
 

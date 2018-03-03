@@ -13,7 +13,9 @@ export class CampaignCreateForm extends Component {
         this.state = {
             name: '',
             subject: '',
-            listsSelected: [],
+            lists: [],
+            sender: 'vernonmensah@gmail.com'
+
         };
 
     }
@@ -30,20 +32,23 @@ export class CampaignCreateForm extends Component {
 
     handleChangeLists = (value) => {
       console.log('value changed', value);
-      let newArr = value.split(',');
-      this.setState({listsSelected: newArr});
+      let newArr = value.split(',').map(listId => ({ id: listId}));
+      this.setState({lists: newArr});
     }
 
     saveData() {
       console.log('saving dataaaa!');
-      const { name, subject, listsSelected } = this.state;
-      this.props.saveCampaignData({name, subject, listsSelected});
+      const { name, subject, lists } = this.state;
+      this.props.saveCampaignData({name, subject, lists});
       this.props.history.push('/dashboard/campaigns/create/email');
     }
 
 
     render() {
         console.log('PROPS!', this.props);
+
+        const { } = this;
+        const { sender } = this.state;
 
         return(
             <section>
@@ -59,7 +64,7 @@ export class CampaignCreateForm extends Component {
 
                 <div>
                     <label htmlFor="name">Sender:</label>
-                    <input type="text" placeholder='vernonmensah@gmail.com' readOnly/>
+                    <input type="text" value={sender} readOnly/>
                 </div>
 
                 <div>

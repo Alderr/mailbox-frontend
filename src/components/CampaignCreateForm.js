@@ -38,8 +38,8 @@ export class CampaignCreateForm extends Component {
 
     saveData() {
       console.log('saving dataaaa!');
-      const { name, subject, lists } = this.state;
-      this.props.saveCampaignData({name, subject, lists});
+      const { name, subject, lists, sender } = this.state;
+      this.props.saveCampaignData({name, subject, lists, sender});
       this.props.history.push('/dashboard/campaigns/create/email');
     }
 

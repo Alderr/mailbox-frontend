@@ -14,8 +14,7 @@ export class DashboardCampaignCreate extends Component {
         super(props);
 
         this.state = {
-          template: '',
-          othertemp: '<html><body><h1>Hello. ^^</h1><h2>Put your email here!</h2></body></html>',
+          template: '<html><body><br><br><h1>Hello. ^^</h1><h2>Put your email here!</h2></body></html>',
           data: {
 
           }
@@ -32,8 +31,12 @@ export class DashboardCampaignCreate extends Component {
     }
 
     sendCampaignData = () => {
-      this.props.dispatch(createCampaign(this.props.userId, this.state.data));
+      this.props.dispatch(createCampaign(this.props.userId, this.state.data, this.moveToCampaignScreen));
 
+    }
+
+    moveToCampaignScreen = () => {
+      this.props.history.push('/dashboard/campaigns');
     }
 
     handleModelChange = (model) => {

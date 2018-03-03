@@ -163,27 +163,32 @@ export const createListData = (dispatch, userId, data, moveToScreen) => {
 };
 
 export const createCampaignData = (dispatch, userId, data, moveToScreen) => {
-    // const { name, email_content, lists } = data;
-    //const { body, subject, data } = email_content;
-    //console.log('I was given SENDER, EMAIL_CONTENT, LISTS, NAME\n', JSON.stringify(email_content, lists, name, null, 2));
+    const { name, subject, body, sender, lists } = data;
+    const email_content = {subject, body, sender};
 
-    // return instance({
-    //     method: 'post',
-    //     url: `list/${userId}/create`,
-    //     data: {
-    //         name
-    //     }
-    // })
-    //     .then(response => {
-    //         console.log(response);
-    //         console.log('----RESPONSE_CREATE_LIST----');
-    //
-    //         return moveToScreen();
-    //     })
-    //     .catch(err => {
-    //         console.log('err', err);
-    //         return dispatch(fetchFail(err.message));
-    //     });
+    console.log('NAME, SUBJECT, BODY, SENDER, LISTS', name, subject, body, sender, lists);
+    console.log('EMAIL_CONTENT', email_content);
+    console.log('URL', `campaign/${userId}/create` );
+
+    return instance({
+        method: 'post',
+        url: `campaign/${userId}/create`,
+        data: {
+            name,
+            lists,
+            email_content
+        }
+    })
+        .then(response => {
+            console.log(response);
+            console.log('----RESPONSE_CREATE_CAMPAIGN----');
+            moveToScreen();
+
+        })
+        .catch(err => {
+            console.log('err', err);
+            return err;
+        });
 };
 
 export const createContactData = (dispatch, userId, listId, data, moveToScreen) => {

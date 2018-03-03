@@ -14,6 +14,11 @@ export class CampaignEndScreen extends Component {
 
     }
 
+    saveDataAndMoveToCampaignScreen() {
+        this.props.sendCampaignData();
+        this.props.history.push('/dashboard/campaigns');
+    }
+
     render() {
         console.log('PROPS!', this.props);
 

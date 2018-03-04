@@ -24,7 +24,7 @@ export default(state = initialStore, action) => {
         return Object.assign({}, state, {
             message: '',
             loading: false,
-            dashboardData: state.data
+            dashboardData: action.data
         });
     }
 

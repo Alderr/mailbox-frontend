@@ -50,7 +50,7 @@ export const findUser = (dispatch, user, pass, fail) => {
 //done
 
 export const getDashboardData = (dispatch, userId) => {
-
+    console.log('dashboardData got called');
     return instance({
         method: 'get',
         url: `user/${userId}/summary`,
@@ -59,11 +59,11 @@ export const getDashboardData = (dispatch, userId) => {
             console.log(response);
             console.log('----RESPONSE----');
 
-            return dispatch(getDashboardDone(response.data));
+            dispatch(getDashboardDone(response.data));
         })
         .catch(err => {
             console.log(err);
-            return dispatch(getDashboardFail(err.message));
+            dispatch(getDashboardFail(err.message));
         });
 };
 

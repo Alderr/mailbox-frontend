@@ -13,6 +13,7 @@ import Home from './components/Home';
 import Dashboard from './components/Dashboard';
 import LoginPage from './components/LoginPage';
 
+import MainView from './components/MainView';
 import DashboardLists from './components/Dashboard_Lists';
 import DashboardCampaigns from './components/Dashboard_Campaigns';
 
@@ -38,7 +39,8 @@ export default class App extends Component {
 
                     <Route exact path='/' component={Home} />
                     <Route exact path='/loginPage' component={LoginPage} />
-                    <Route path='/dashboard' component={Dashboard} />
+                    <Route path='/dashboard' component={MainView} />
+                    <Route exact path='/dashboard' component={Dashboard} />
                     <Route exact path='/dashboard/:page' component={dashboardBranches} />
                     <Route path='/dashboard/:page/create' component={createBranches} />
 

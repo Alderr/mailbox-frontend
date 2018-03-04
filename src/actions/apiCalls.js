@@ -53,7 +53,7 @@ export const getDashboardData = (dispatch, userId) => {
 
     return instance({
         method: 'get',
-        url: 'user/summary',
+        url: `user/${userId}/summary`,
     })
         .then(response => {
             console.log(response);

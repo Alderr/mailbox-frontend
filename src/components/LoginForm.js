@@ -13,36 +13,37 @@ export class LoginForm extends Component {
     }
 
     onSubmit(values) {
-        console.log('VALUES', values);
-        console.log('BASE_URL',process.env.REACT_APP_BASE_URL);
+        console.log(values);
         this.props.dispatch(login(values));
     }
 
     render() {
+        const { error, message, handleSubmit, pristine, submitting } = this.props;
+        const { onSubmit } = this;
 
-        let error;
-        if (this.props.error) {
-            error = (
+        let errorSection;
+        if (error) {
+            errorSection = (
                 <div className="form-error" aria-live="polite">
-                    {this.props.error}
+                    { error }
                 </div>
             );
         }
-        let message;
-        if (this.props.message) {
-            message = (
+        let messageSection;
+        if (message) {
+            messageSection = (
                 <div className="form-error" aria-live="polite">
-                    {this.props.message}
+                    { message }
                 </div>
             );
         }
 
         return(
             <section>
-                <form className='login-form' onSubmit={this.props.handleSubmit( values => this.onSubmit(values))}>
+                <form className='login-form' onSubmit={handleSubmit( values => onSubmit(values))}>
 
-                    {error}
-                    {message}
+                    {errorSection}
+                    {messageSection}
                     <label htmlFor="username">Username</label>
                     <Field
                         component={Input}
@@ -60,7 +61,7 @@ export class LoginForm extends Component {
                         id="password"
                         validate={[required, nonEmpty]}
                     />
-                    <button disabled={this.props.pristine || this.props.submitting}>
+                    <button disabled={ pristine || submitting}>
                   Log in
                     </button>
                 </form>

@@ -7,7 +7,6 @@ import Input from './Input';
 import LoginForm from './LoginForm';
 
 import { login } from '../actions/loginActions';
-import { required, nonEmpty } from '../validators';
 
 export class LoginPage extends Component {
 

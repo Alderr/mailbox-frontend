@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
-import './App.css';
-
 import { connect } from 'react-redux';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import {
-    BrowserRouter as Router,
-    Route
-} from 'react-router-dom';
-
+import './App.css';
 
 import Home from './components/Home';
 import Dashboard from './components/Dashboard';
@@ -32,7 +27,7 @@ export default class App extends Component {
     }
 
     render() {
-        console.log(this.props.mainBranch);
+
         return (
             <Router>
                 <div className="App">
@@ -41,11 +36,14 @@ export default class App extends Component {
                     <Route exact path='/loginPage' component={LoginPage} />
                     <Route path='/dashboard' component={MainView} />
                     <Route exact path='/dashboard' component={Dashboard} />
+
                     <Route exact path='/dashboard/:page' component={dashboardBranches} />
                     <Route path='/dashboard/:page/create' component={createBranches} />
 
                     <Route exact path='/dashboard/:page/id/:id' component={idBranches} />
                     <Route exact path='/dashboard/lists/id/:id/createContact' component={ContactCreate} />
+                    
+                    {/* Not done */}
                     <Route exact path='/dashboard/campaigns/id/:id/email' component={null} />
                     <Route exact path='/dashboard/campaigns/id/:id/report/:event' component={null} />
                 </div>
@@ -55,10 +53,9 @@ export default class App extends Component {
 }
 
 
-const dashboardBranches = ({match}) => {
+const dashboardBranches = (props) => {
+    const { match } = props;
 
-    console.log('switching - branches!');
-    console.log(match);
     if (match.url === '/dashboard/lists') {
         return <DashboardLists />;
     }
@@ -71,11 +68,11 @@ const dashboardBranches = ({match}) => {
 };
 
 const createBranches = (props) => {
-    const { match, history } = props;
-    console.log('switching - create branches!');
-    console.log(match);
+
+    const { match } = props;
+
     if (match.url === '/dashboard/lists/create') {
-        return <DashboardListCreate history={history}/>;
+        return <DashboardListCreate {...props} />;
     }
 
     else if (match.url === '/dashboard/campaigns/create') {
@@ -85,10 +82,9 @@ const createBranches = (props) => {
     return <Home />;
 };
 
-const idBranches = ({match}) => {
-
-    console.log('switching - id branches!');
-    console.log(match);
+const idBranches = (props) => {
+    const { match } = props;
+ 
     if (match.params.page === 'lists') {
         return <DashboardListView id={match.params.id} />;
     }
@@ -98,8 +94,4 @@ const idBranches = ({match}) => {
     }
 
     return <Home />;
-};
-
-App.defualtProps = {
-
 };

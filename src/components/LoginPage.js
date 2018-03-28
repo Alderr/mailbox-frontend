@@ -10,13 +10,9 @@ import { login } from '../actions/loginActions';
 import { required, nonEmpty } from '../validators';
 
 export class LoginPage extends Component {
-    constructor(props){
-        super(props);
-    }
+
 
     onSubmit(values) {
-        console.log('VALUES', values);
-        console.log('BASE_URL', process.env.REACT_APP_BASE_URL);
         this.props.dispatch(login(values));
     }
 
@@ -27,12 +23,10 @@ export class LoginPage extends Component {
         }
 
         return(
-            <div>
-                <h1>
-                LoginPage
-                </h1>
+            <section>
+                <h1> LoginPage </h1>
                 <LoginForm message={this.props.message} />
-            </div>
+            </section>
         );
     }
 }

@@ -15,9 +15,7 @@ export class DashboardCampaignCreate extends Component {
 
         this.state = {
           template: '<html><body><br><br><h1>Hello. ^^</h1><h2>Put your email here!</h2></body></html>',
-          data: {
-
-          }
+          data: {}
         }
     }
 
@@ -32,7 +30,6 @@ export class DashboardCampaignCreate extends Component {
 
     sendCampaignData = () => {
       this.props.dispatch(createCampaign(this.props.userId, this.state.data, this.moveToCampaignScreen));
-
     }
 
     moveToCampaignScreen = () => {
@@ -49,25 +46,15 @@ export class DashboardCampaignCreate extends Component {
       this.setState({content: e.target.value})
     }
 
-    moveToListCampaignScreen = () => {
-      console.log('contact id...', this.props.listId);
-      this.props.history.push(`/dashboard/lists/id/${this.props.listId}`);
-    }
-
     passProps = (props, yourProps, Component) => {
-      console.log('dynamically passing props..');
-      console.log(props.match);
-      return <Component
-        {... yourProps}
-        {...props} />;
+      return <Component {... yourProps} {...props} />;
     }
 
     render() {
-      console.log('PROPS! Campaign Create', this.props);
+
       const { saveCampaignData, sendCampaignData, handleModelChange, handleInputChange } = this;
       const { match, location, history } = this.props;
       const { template } = this.state;
-
 
       let loading;
       if (this.props.loading) {

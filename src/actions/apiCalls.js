@@ -18,7 +18,7 @@ export const axios = require('axios');
 export const instance = axios.create({
     baseURL: process.env.REACT_APP_BASE_URL
 });
-//done
+
 export const findUser = (dispatch, user, pass, fail) => {
 
     return instance({
@@ -47,7 +47,6 @@ export const findUser = (dispatch, user, pass, fail) => {
             return dispatch(fail(err.message));
         });
 };
-//done
 
 export const getDashboardData = (dispatch, userId) => {
     console.log('dashboardData got called');
@@ -100,7 +99,7 @@ export const getListData = (dispatch, userId, listId) => {
             return dispatch(fetchFail(err.message));
         });
 };
-//done
+
 export const getCampaignsData = (dispatch, userId) => {
 
     return instance({
@@ -119,10 +118,7 @@ export const getCampaignsData = (dispatch, userId) => {
         });
 };
 
-export const getCampaign = (dispatch, userId, campaignId) => {
 
-};
-//done
 export const getCampaignEventData = (dispatch, campaignEventId) => {
     return instance({
         method: 'get',
@@ -183,7 +179,6 @@ export const createCampaignData = (dispatch, userId, data, moveToScreen) => {
             console.log(response);
             console.log('----RESPONSE_CREATE_CAMPAIGN----');
             moveToScreen();
-
         })
         .catch(err => {
             console.log('err', err);

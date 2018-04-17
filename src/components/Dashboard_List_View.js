@@ -6,14 +6,6 @@ import loginGate from './requires-login-gate';
 import { getCampaigns, deleteContact } from '../actions/userActions';
 
 export class DashboardListView extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            id: '',
-            contacts: ''
-        };
-    }
 
     createContacts() {
         return this.props.list.contacts.map(contact => {

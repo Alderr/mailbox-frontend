@@ -20,8 +20,7 @@
             4
         ],
         "linebreak-style": [
-            "error",
-            "unix"
+            0
         ],
         "no-console": [
           "warn"

@@ -7,13 +7,12 @@ import loginGate from './requires-login-gate';
 import { getCampaignEvent } from '../actions/userActions';
 
 export class DashboardCampaignView extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
 
         this.state = {
             id: '',
             contacts: ''
-
         };
     }
 
@@ -116,7 +115,7 @@ const mapStateToProps = (Reducers, props) => {
     return {
         userId: Reducers.loginReducer.userId,
         loading: Reducers.userReducer.loading,
-        campaign: Reducers.userReducer.campaignsData.filter(campaign => campaign._id === props.id)[0],
+        campaign: Reducers.userReducer.campaignsData.find(campaign => campaign._id === props.match.params.id),
         campaignEvent: Reducers.userReducer.campaignEventData
     };
 };

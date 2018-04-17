@@ -7,13 +7,12 @@ import loginGate from './requires-login-gate';
 import { getCampaigns, deleteContact } from '../actions/userActions';
 
 export class DashboardListView extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
 
         this.state = {
             id: '',
             contacts: ''
-
         };
     }
 
@@ -29,14 +28,9 @@ export class DashboardListView extends Component {
         });
     }
 
-    deleteContact = (id) => {
-
-      console.log('this contact....', id);
-      this.props.dispatch(deleteContact(this.props.userId, this.props.id, id));
-    }
-
-    componentWillMount() {
-        //this.props.dispatch(getCampaigns(this.props.userId));
+    deleteContact (id) {
+        console.log('this contact....', id);
+        this.props.dispatch(deleteContact(this.props.userId, this.props.list._id, id));
     }
 
     render() {
@@ -47,8 +41,7 @@ export class DashboardListView extends Component {
                 <h1> List: {this.props.list.name} </h1>
                 <div>
                     <button>
-
-                        <Link to={`/dashboard/lists/id/${this.props.id}/createContact`}>
+                        <Link to={`/dashboard/lists/id/${this.props.list._id}/createContact`}>
                           Add Contact
                         </Link>
                     </button>
@@ -64,7 +57,7 @@ export class DashboardListView extends Component {
 const mapStateToProps = (Reducers, props) => {
     return {
         userId: Reducers.loginReducer.userId,
-        list: Reducers.userReducer.listsData.filter(list => list._id === props.id)[0]
+        list: Reducers.userReducer.listsData.find(list => list._id === props.match.params.id)
     };
 };
 

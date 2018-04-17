@@ -37,10 +37,15 @@ export default class App extends Component {
                     <Route path='/dashboard' component={MainView} />
                     <Route exact path='/dashboard' component={Dashboard} />
 
-                    <Route exact path='/dashboard/:page' component={dashboardBranches} />
-                    <Route path='/dashboard/:page/create' component={createBranches} />
+                    <Route exact path='/dashboard/lists' component={DashboardLists} />
+                    <Route exact path='/dashboard/campaigns' component={DashboardCampaigns} />
 
-                    <Route exact path='/dashboard/:page/id/:id' component={idBranches} />
+                    <Route path='/dashboard/lists/create' component={DashboardListCreate} />
+                    <Route path='/dashboard/campaigns/create' component={DashboardCampaignCreate} />
+
+                    <Route exact path='/dashboard/lists/id/:id' component={DashboardListView} />
+                    <Route exact path='/dashboard/campaigns/id/:id' component={DashboardCampaignView} />
+
                     <Route exact path='/dashboard/lists/id/:id/createContact' component={ContactCreate} />
                     
                     {/* Not done */}
@@ -51,47 +56,3 @@ export default class App extends Component {
         );
     }
 }
-
-
-const dashboardBranches = (props) => {
-    const { match } = props;
-
-    if (match.url === '/dashboard/lists') {
-        return <DashboardLists />;
-    }
-
-    else if (match.url === '/dashboard/campaigns') {
-        return <DashboardCampaigns />;
-    }
-
-    return <Home />;
-};
-
-const createBranches = (props) => {
-
-    const { match } = props;
-
-    if (match.url === '/dashboard/lists/create') {
-        return <DashboardListCreate {...props} />;
-    }
-
-    else if (match.url === '/dashboard/campaigns/create') {
-        return <DashboardCampaignCreate {...props} />;
-    }
-
-    return <Home />;
-};
-
-const idBranches = (props) => {
-    const { match } = props;
- 
-    if (match.params.page === 'lists') {
-        return <DashboardListView id={match.params.id} />;
-    }
-
-    else if (match.params.page === 'campaigns') {
-        return <DashboardCampaignView id={match.params.id} />;
-    }
-
-    return <Home />;
-};

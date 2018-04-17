@@ -7,15 +7,6 @@ import loginGate from './requires-login-gate';
 import { getCampaignEvent } from '../actions/userActions';
 
 export class DashboardCampaignView extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            id: '',
-            contacts: ''
-        };
-    }
-
     componentWillMount() {
         console.log('Mounted?');
         this.props.dispatch(getCampaignEvent(this.props.campaign.campaign_event_data_id));

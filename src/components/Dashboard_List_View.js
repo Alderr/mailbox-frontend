@@ -20,7 +20,6 @@ export class DashboardListView extends Component {
     }
 
     deleteContact (id) {
-        console.log('this contact....', id);
         this.props.dispatch(deleteContact(this.props.userId, this.props.list._id, id));
     }
 
@@ -29,7 +28,6 @@ export class DashboardListView extends Component {
     }
 
     render() {
-        console.log('THIS.PROPS', this.props);
 
         return(
             <section>

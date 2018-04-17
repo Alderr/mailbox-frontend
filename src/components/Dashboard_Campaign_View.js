@@ -48,7 +48,6 @@ export class DashboardCampaignView extends Component {
     getClicks(arr) {
         let clicks = 0;
         arr.forEach(email => {
-            console.log('YO>>>>>>');
             clicks = clicks + email.clickEvents.length;
         });
 
@@ -64,7 +63,6 @@ export class DashboardCampaignView extends Component {
 
         let campaign_view;
         if (!this.props.loading && this.props.campaignEvent && !this.props.message) {
-            // console.log('clicks', clicks);
             campaign_view =
                 <div>
                     <h1> Campaign: {this.props.campaign.name} </h1>

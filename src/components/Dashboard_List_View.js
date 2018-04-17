@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 
 import loginGate from './requires-login-gate';
 
@@ -33,6 +32,10 @@ export class DashboardListView extends Component {
         this.props.dispatch(deleteContact(this.props.userId, this.props.list._id, id));
     }
 
+    moveToCreateContactView() {
+        this.props.history.push(`/dashboard/lists/id/${this.props.list._id}/createContact`);
+    }
+
     render() {
         console.log('THIS.PROPS', this.props);
 
@@ -40,10 +43,8 @@ export class DashboardListView extends Component {
             <section>
                 <h1> List: {this.props.list.name} </h1>
                 <div>
-                    <button>
-                        <Link to={`/dashboard/lists/id/${this.props.list._id}/createContact`}>
+                    <button onClick={() => this.moveToCreateContactView()}>
                           Add Contact
-                        </Link>
                     </button>
                 </div>
                 <ul>

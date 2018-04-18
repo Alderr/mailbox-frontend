@@ -19,14 +19,17 @@ export class CampaignCreateSelect extends Component {
             value: [],
             rtl: false,
         };
+
+        this.handleSelectChange = this.handleSelectChange.bind(this);
+        this.toggleCheckbox = this.toggleCheckbox.bind(this);
     }
 
-    handleSelectChange = (value) => {
+    handleSelectChange(value) {
         this.props.handleChangeLists(value);
         this.setState({ value });
     }
 
-    toggleCheckbox = (e) => {
+    toggleCheckbox(e) {
         this.setState({
             [e.target.name]: e.target.checked,
         });

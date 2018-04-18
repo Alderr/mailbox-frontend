@@ -13,7 +13,6 @@ export class ListItem extends Component {
 
     deleteList = () => {
         this.props.dispatch(deleteList(this.props.userId, this.props.id));
-        console.log(this.props);
     }
 
     setCurrentList = () => {
@@ -21,8 +20,6 @@ export class ListItem extends Component {
     }
 
     render() {
-        console.log(this.props);
-        console.log('--a list item---');
         return(
             <section key={this.props.id}>
 

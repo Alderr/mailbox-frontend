@@ -22,7 +22,6 @@ export class CampaignCreateSelect extends Component {
     }
 
     handleSelectChange = (value) => {
-        console.log('You\'ve selected:', value);
         this.props.handleChangeLists(value);
         this.setState({ value });
     }
@@ -35,7 +34,6 @@ export class CampaignCreateSelect extends Component {
 
     render() {
         const { crazy, disabled, stayOpen, value } = this.state;
-        console.log('PROPS===========',this.props);
 
         let error;
         if (this.props.error) {

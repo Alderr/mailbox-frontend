@@ -18,7 +18,6 @@ export class DashboardCampaigns extends Component {
 
     createCampaignItem(campaign) {
         const { name, _id, date, lists } = campaign;
-        console.log('NAME, _ID', name, _id);
 
         return <CampaignItem key={_id} campaignName={name} id={_id} date={date}/>;
 

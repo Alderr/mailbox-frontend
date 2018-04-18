@@ -18,13 +18,10 @@ export class ContactCreate extends Component {
     }
 
     moveToListIdScreen = () => {
-      console.log('contact id...', this.props.listId);
       this.props.history.push(`/dashboard/lists/id/${this.props.listId}`);
     }
 
     render() {
-        console.log('in contact create!');
-        console.log('PROPS', this.props);
 
         let loading;
         if (this.props.loading) {

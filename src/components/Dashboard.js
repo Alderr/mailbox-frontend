@@ -13,8 +13,7 @@ export class Dashboard extends Component {
         this.props.dispatch(getDashboard(this.props.userId));
     }
 
-    render() {
-        console.log(this.props);
+    render() {      
         const { recentCampaigns, totalSubscribers } = this.props.summary;
 
         return(

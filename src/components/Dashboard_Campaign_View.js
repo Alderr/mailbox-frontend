@@ -8,18 +8,15 @@ import { getCampaignEvent } from '../actions/userActions';
 
 export class DashboardCampaignView extends Component {
     componentWillMount() {
-        console.log('Mounted?');
         this.props.dispatch(getCampaignEvent(this.props.campaign.campaign_event_data_id));
         this.startPeriodicRefresh();
     }
 
     componentWillUnmount() {
-        console.log('unmounted?');
         this.stopPeriodicRefresh();
     }
 
     shouldComponentUpdate(nextProps){
-        console.log('checking if i should update?');
         if (this.props.campaignEvent){
             let checkOne = nextProps.campaignEvent.click.emails.length === this.props.campaignEvent.click.emails.length;
             let checkTwo = this.getClicks(nextProps.campaignEvent.click.emails) === this.getClicks(this.props.campaignEvent.click.emails);
@@ -34,7 +31,6 @@ export class DashboardCampaignView extends Component {
     startPeriodicRefresh() {
         this.refreshInterval = setInterval(
             () => {
-                console.log('every so and so');
                 return this.props.dispatch(getCampaignEvent(this.props.campaign.campaign_event_data_id));
             },
             5 * 1000 // 20 seconds
@@ -87,8 +83,6 @@ export class DashboardCampaignView extends Component {
         if (this.props.message) {
             error = <h3>{this.props.message}</h3>;
         }
-
-        console.log('THIS.PROPS', this.props);
 
         return(
             <section>

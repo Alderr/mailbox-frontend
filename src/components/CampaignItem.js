@@ -13,12 +13,10 @@ export class CampaignItem extends Component {
 
     deleteCampaign = () => {
         this.props.dispatch(deleteCampaign(this.props.userId, this.props.id));
-        console.log(this.props);
     }
 
     render() {
-        console.log(this.props);
-        console.log('--a list item---');
+
         return(
             <section>
                 <li>

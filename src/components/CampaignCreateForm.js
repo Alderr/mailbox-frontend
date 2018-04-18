@@ -15,51 +15,50 @@ export class CampaignCreateForm extends Component {
             subject: '',
             lists: [],
             sender: 'vernonmensah@gmail.com'
-
         };
 
+        this.handleChangeName = this.handleChangeName.bind(this);
+        this.handleChangeLists = this.handleChangeLists.bind(this);
+        this.handleChangeSubject = this.handleChangeSubject.bind(this);
+        this.handleChangeLists = this.handleChangeLists.bind(this);
+        this.saveData = this.saveData.bind(this);
     }
 
-    handleChangeName = (value) => {
-      console.log(value);
-      this.setState({name: value});
+    handleChangeName(e) {
+        const value = e.currentTarget.value;
+        this.setState({ name: value });
     }
 
-    handleChangeSubject = (value) => {
-      console.log(value);
-      this.setState({subject: value});
+    handleChangeSubject(e) {
+        const value = e.currentTarget.value;
+        this.setState({ subject: value });
     }
 
-    handleChangeLists = (value) => {
-      console.log('value changed', value);
-      let newArr = value.split(',').map(listId => ({ id: listId}));
-      this.setState({lists: newArr});
+    handleChangeLists(value) {
+        const newArr = value.split(',').map(listId => ({ id: listId}));
+        this.setState({ lists: newArr });
     }
 
     saveData() {
-      console.log('saving dataaaa!');
-      const { name, subject, lists, sender } = this.state;
-      this.props.saveCampaignData({name, subject, lists, sender});
-      this.props.history.push('/dashboard/campaigns/create/email');
+        const { name, subject, lists, sender } = this.state;
+        this.props.saveCampaignData({ name, subject, lists, sender });
+        this.props.history.push('/dashboard/campaigns/create/email');
     }
 
-
     render() {
-        console.log('PROPS!', this.props);
 
-        const { } = this;
         const { sender } = this.state;
 
         return(
             <section>
                 <div>
                     <label htmlFor="name">Campaign Name:</label>
-                    <input type="text" onChange={e => this.handleChangeName(e.currentTarget.value)} />
+                    <input type="text" onChange={this.handleChangeName} />
                 </div>
 
                 <div>
                     <label htmlFor="subject">Subject Title:</label>
-                    <input type="text" onChange={e => this.handleChangeSubject(e.currentTarget.value)} />
+                    <input type="text" onChange={this.handleChangeSubject} />
                 </div>
 
                 <div>
@@ -69,12 +68,10 @@ export class CampaignCreateForm extends Component {
 
                 <div>
                     <label htmlFor="name">Lists:</label>
-                    <CampaignCreateSelect handleChangeLists={e => this.handleChangeLists(e)}/>
+                    <CampaignCreateSelect handleChangeLists={this.handleChangeLists}/>
                 </div>
 
-                <button onClick={() => this.saveData()}> Create Email </button>
-
-
+                <button onClick={this.saveData}> Create Email </button>
             </section>
         );
 

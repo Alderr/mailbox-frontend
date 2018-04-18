@@ -48,10 +48,6 @@ export class DashboardCampaignCreate extends Component {
         this.setState({content: model});
     }
 
-    handleInputChange(e) {
-        this.setState({content: e.target.value});
-    }
-
     passProps(props, yourProps, Component) {
         return <Component {... yourProps} {...props} />;
     }

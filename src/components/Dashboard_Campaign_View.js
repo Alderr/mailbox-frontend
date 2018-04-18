@@ -18,10 +18,12 @@ export class DashboardCampaignView extends Component {
 
     shouldComponentUpdate(nextProps){
         if (this.props.campaignEvent){
-            let checkOne = nextProps.campaignEvent.click.emails.length === this.props.campaignEvent.click.emails.length;
-            let checkTwo = this.getClicks(nextProps.campaignEvent.click.emails) === this.getClicks(this.props.campaignEvent.click.emails);
+            // Allows campaign info to update in real-time! Checks if theres an update before re-rendering
+            const checkOne = nextProps.campaignEvent.click.emails.length === this.props.campaignEvent.click.emails.length;
+            const checkTwo = this.getClicks(nextProps.campaignEvent.click.emails) === this.getClicks(this.props.campaignEvent.click.emails);
+            const checkThree = nextProps.campaignEvent.delivery.emails.length === this.props.campaignEvent.delivery.emails.length;
             console.log('and.. ', !(checkOne && checkTwo));
-            return !(checkOne && checkTwo);
+            return !(checkOne && checkTwo && checkThree);
         }
 
         return true;

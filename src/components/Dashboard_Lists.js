@@ -18,10 +18,8 @@ export class DashboardLists extends Component {
 
     createListItem(list) {
         const { name, contacts, _id } = list;
-        console.log('NAME, CONTACTS, _ID ', JSON.stringify(name, contacts, _id , null, 2));
 
         return <ListItem key={_id} listName={name} subscribers={contacts.length} id={_id} />
-
     }
 
 

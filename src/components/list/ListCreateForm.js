@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
 import {Field, reduxForm, focus} from 'redux-form';
-import { Link } from 'react-router-dom';
 
-import Input from './Input';
+import Input from '../Input';
 
-import { required, nonEmpty } from '../validators';
+import { required, nonEmpty } from '../../validators';
 
 export class ListCreateForm extends Component {
-    constructor(props){
-        super(props);
-    }
 
     onSubmit(values) {
         this.props.createNewList(values);

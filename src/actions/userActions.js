@@ -2,76 +2,70 @@ import * as Api from './apiCalls';
 
 export const getDashboard = (userId) => dispatch => {
     dispatch(loading());
+    
     Api.getDashboardData(dispatch, userId);
-
 };
 
 export const getList = (userId, listId) => dispatch => {
     dispatch(loading());
-    Api.getListData(dispatch, userId, listId);
 
+    Api.getListData(dispatch, userId, listId);
 };
 
 export const getLists = (userId) => dispatch => {
     dispatch(loading());
-    Api.getListsData(dispatch, userId);
 
+    Api.getListsData(dispatch, userId);
 };
 
 export const getCampaigns = (userId) => dispatch => {
     dispatch(loading());
-    Api.getCampaignsData(dispatch, userId);
 
+    Api.getCampaignsData(dispatch, userId);
 };
 
 export const getCampaignEvent = (campaignEventId) => dispatch => {
     dispatch(loading());
-    Api.getCampaignEventData(dispatch, campaignEventId);
 
+    Api.getCampaignEventData(dispatch, campaignEventId);
 };
-//done
+
 export const createList = (userId, data, moveToScreen) => dispatch => {
     dispatch(loading());
-    Api.createListData(dispatch, userId, data, moveToScreen);
 
+    Api.createListData(dispatch, userId, data, moveToScreen);
 };
 
 export const createCampaign = (userId, data, moveToScreen) => dispatch => {
-    console.log('Campaign DATA', JSON.stringify(data, null, 2));
-    console.log('USERID', userId);
 
     dispatch(loading());
 
-    //  Api.createCampaignData(dispatch, userId, data);
     Api.createCampaignData(dispatch, userId, data, moveToScreen);
-
 
 };
 
 export const createContact = (userId, listId, data, moveToScreen) => dispatch => {
     dispatch(loading());
-    console.log('i got this contact info? ', userId, listId, data);
-    Api.createContactData(dispatch, userId, listId, data, moveToScreen);
 
+    Api.createContactData(dispatch, userId, listId, data, moveToScreen);
 };
-//done
+
 export const deleteList = (userId, listId) => dispatch => {
     dispatch(loading());
-    Api.deleteListData(dispatch, userId, listId);
 
+    Api.deleteListData(dispatch, userId, listId);
 };
 
 export const deleteCampaign = (userId, campaignId) => dispatch => {
     dispatch(loading());
-    Api.deleteCampaignData(dispatch, userId, campaignId);
 
+    Api.deleteCampaignData(dispatch, userId, campaignId);
 };
 //done
 export const deleteContact = (userId, listId, contactId) => dispatch => {
     dispatch(loading());
-    console.log('got this deleteContact', userId, listId, contactId);
-    Api.deleteContactData(dispatch, userId, listId, contactId);
 
+    Api.deleteContactData(dispatch, userId, listId, contactId);
 };
 
 export const LOADING = 'LOADING';

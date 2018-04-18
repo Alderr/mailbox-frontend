@@ -1,50 +1,36 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 
-import loginGate from './requires-login-gate';
+import loginGate from '../requires-login-gate';
 
-import { getCampaignEvent } from '../actions/userActions';
+import { getCampaignEvent } from '../../actions/userActions';
 
 export class DashboardCampaignView extends Component {
-    constructor(props){
-        super(props);
-
-        this.state = {
-            id: '',
-            contacts: ''
-
-        };
-    }
-
     componentWillMount() {
-        console.log('Mounted?');
         this.props.dispatch(getCampaignEvent(this.props.campaign.campaign_event_data_id));
         this.startPeriodicRefresh();
     }
 
     componentWillUnmount() {
-        console.log('unmounted?');
         this.stopPeriodicRefresh();
     }
 
     shouldComponentUpdate(nextProps){
-        console.log('checking if i should update?');
         if (this.props.campaignEvent){
-            let checkOne = nextProps.campaignEvent.click.emails.length === this.props.campaignEvent.click.emails.length;
-            let checkTwo = this.getClicks(nextProps.campaignEvent.click.emails) === this.getClicks(this.props.campaignEvent.click.emails);
-            console.log('and.. ', !(checkOne && checkTwo));
-            return !(checkOne && checkTwo);
+            // Allows campaign info to update in real-time! Checks if theres an update before re-rendering
+            const checkOne = nextProps.campaignEvent.click.emails.length === this.props.campaignEvent.click.emails.length;
+            const checkTwo = this.getClicks(nextProps.campaignEvent.click.emails) === this.getClicks(this.props.campaignEvent.click.emails);
+            const checkThree = nextProps.campaignEvent.delivery.emails.length === this.props.campaignEvent.delivery.emails.length;
+
+            return !(checkOne && checkTwo && checkThree);
         }
 
         return true;
-
     }
 
     startPeriodicRefresh() {
         this.refreshInterval = setInterval(
             () => {
-                console.log('every so and so');
                 return this.props.dispatch(getCampaignEvent(this.props.campaign.campaign_event_data_id));
             },
             5 * 1000 // 20 seconds
@@ -58,7 +44,6 @@ export class DashboardCampaignView extends Component {
     getClicks(arr) {
         let clicks = 0;
         arr.forEach(email => {
-            console.log('YO>>>>>>');
             clicks = clicks + email.clickEvents.length;
         });
 
@@ -74,7 +59,6 @@ export class DashboardCampaignView extends Component {
 
         let campaign_view;
         if (!this.props.loading && this.props.campaignEvent && !this.props.message) {
-            // console.log('clicks', clicks);
             campaign_view =
                 <div>
                     <h1> Campaign: {this.props.campaign.name} </h1>
@@ -100,8 +84,6 @@ export class DashboardCampaignView extends Component {
             error = <h3>{this.props.message}</h3>;
         }
 
-        console.log('THIS.PROPS', this.props);
-
         return(
             <section>
                 {loading}
@@ -116,7 +98,7 @@ const mapStateToProps = (Reducers, props) => {
     return {
         userId: Reducers.loginReducer.userId,
         loading: Reducers.userReducer.loading,
-        campaign: Reducers.userReducer.campaignsData.filter(campaign => campaign._id === props.id)[0],
+        campaign: Reducers.userReducer.campaignsData.find(campaign => campaign._id === props.match.params.id),
         campaignEvent: Reducers.userReducer.campaignEventData
     };
 };

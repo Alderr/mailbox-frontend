@@ -1,19 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 
-import loginGate from './requires-login-gate';
-
-import { getCampaigns } from '../actions/userActions';
+import loginGate from '../requires-login-gate';
 
 export class Reports extends Component {
-    constructor(props){
-        super(props);
-    }
 
-    componentWillMount() {
-        //this.props.dispatch(getCampaigns(this.props.userId));
-    }
 
     render() {
 

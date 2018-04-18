@@ -2,15 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import loginGate from './requires-login-gate';
+import loginGate from '../requires-login-gate';
 import ListItem from './ListItem.js';
 
-import { getLists } from '../actions/userActions';
+import { getLists } from '../../actions/userActions';
 
 export class DashboardLists extends Component {
-    constructor(props){
-        super(props);
-    }
 
     componentWillMount() {
         this.props.dispatch(getLists(this.props.userId));
@@ -18,12 +15,9 @@ export class DashboardLists extends Component {
 
     createListItem(list) {
         const { name, contacts, _id } = list;
-        console.log('NAME, CONTACTS, _ID ', JSON.stringify(name, contacts, _id , null, 2));
 
-        return <ListItem key={_id} listName={name} subscribers={contacts.length} id={_id} />
-
+        return <ListItem key={_id} listName={name} subscribers={contacts.length} id={_id} />;
     }
-
 
     render() {
         let loading;

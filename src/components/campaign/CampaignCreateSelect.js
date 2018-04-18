@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import Select from 'react-select';
 
-import loginGate from './requires-login-gate';
+import loginGate from '../requires-login-gate';
 
 import 'react-select/dist/react-select.css';
 
@@ -14,28 +13,28 @@ export class CampaignCreateSelect extends Component {
         this.state = {
             removeSelected: true,
             disabled: false,
-            crazy: false,
             stayOpen: false,
             value: [],
             rtl: false,
         };
+
+        this.handleSelectChange = this.handleSelectChange.bind(this);
+        this.toggleCheckbox = this.toggleCheckbox.bind(this);
     }
 
-    handleSelectChange = (value) => {
-        console.log('You\'ve selected:', value);
+    handleSelectChange(value) {
         this.props.handleChangeLists(value);
         this.setState({ value });
     }
 
-    toggleCheckbox = (e) => {
+    toggleCheckbox(e) {
         this.setState({
             [e.target.name]: e.target.checked,
         });
     }
 
     render() {
-        const { crazy, disabled, stayOpen, value } = this.state;
-        console.log('PROPS===========',this.props);
+        const { disabled, stayOpen, value } = this.state;
 
         let error;
         if (this.props.error) {
@@ -45,6 +44,7 @@ export class CampaignCreateSelect extends Component {
                 </div>
             );
         }
+
         let message;
         if (this.props.message) {
             message = (
@@ -56,7 +56,8 @@ export class CampaignCreateSelect extends Component {
 
         return(
             <section>
-                <h1>Hi!</h1>
+                {error}
+                {message}
                 <Select
                     closeOnSelect={!stayOpen}
                     disabled={disabled}

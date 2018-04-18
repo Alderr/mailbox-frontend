@@ -5,8 +5,6 @@ import {Redirect} from 'react-router-dom';
 export default () => Component => {
     function RequiresLogin(props) {
         const {...passThroughProps} = props;
-        console.log('in here!-------------');
-        console.log('logged in', props.loggedIn);
         if (props.loggedIn) {
             return <Component {...passThroughProps} />;
         }

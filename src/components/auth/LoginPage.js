@@ -1,22 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {Field, reduxForm, focus} from 'redux-form';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
-import Input from './Input';
 import LoginForm from './LoginForm';
 
-import { login } from '../actions/loginActions';
-import { required, nonEmpty } from '../validators';
+import { login } from '../../actions/loginActions';
 
 export class LoginPage extends Component {
-    constructor(props){
-        super(props);
-    }
+
 
     onSubmit(values) {
-        console.log('VALUES', values);
-        console.log('BASE_URL', process.env.REACT_APP_BASE_URL);
         this.props.dispatch(login(values));
     }
 
@@ -27,12 +20,10 @@ export class LoginPage extends Component {
         }
 
         return(
-            <div>
-                <h1>
-                LoginPage
-                </h1>
+            <section>
+                <h1> LoginPage </h1>
                 <LoginForm message={this.props.message} />
-            </div>
+            </section>
         );
     }
 }

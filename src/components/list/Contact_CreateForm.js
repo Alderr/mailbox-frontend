@@ -1,21 +1,14 @@
 import React, { Component } from 'react';
 import {Field, reduxForm, focus} from 'redux-form';
-import { Link } from 'react-router-dom';
 
-import Input from './Input';
+import Input from '../Input';
 
-import { login } from '../actions/loginActions';
-import { required, nonEmpty } from '../validators';
+import { required, nonEmpty } from '../../validators';
 
-export class LoginForm extends Component {
-    constructor(props){
-        super(props);
-    }
+export class Contact_CreateForm extends Component {
 
     onSubmit(values) {
-        console.log('VALUES', values);
-        console.log('BASE_URL',process.env.REACT_APP_BASE_URL);
-        this.props.dispatch(login(values));
+        this.props.createContact(values);
     }
 
     render() {
@@ -39,29 +32,36 @@ export class LoginForm extends Component {
 
         return(
             <section>
-                <form className='login-form' onSubmit={this.props.handleSubmit( values => this.onSubmit(values))}>
+                <form className='login-form' onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
 
                     {error}
                     {message}
-                    <label htmlFor="username">Username</label>
+                    <label htmlFor="name">First Name:</label>
                     <Field
                         component={Input}
                         type="text"
-                        name="username"
-                        id="username"
+                        name="firstName"
+                        id="firstName"
                         validate={[required, nonEmpty]}
                     />
-
-                    <label htmlFor="password">Password</label>
+                    <label htmlFor="name">Last Name:</label>
                     <Field
                         component={Input}
-                        type="password"
-                        name="password"
-                        id="password"
+                        type="text"
+                        name="lastName"
+                        id="lastName"
+                        validate={[required, nonEmpty]}
+                    />
+                    <label htmlFor="name">Email:</label>
+                    <Field
+                        component={Input}
+                        type="text"
+                        name="email"
+                        id="email"
                         validate={[required, nonEmpty]}
                     />
                     <button disabled={this.props.pristine || this.props.submitting}>
-                  Log in
+                  Create
                     </button>
                 </form>
             </section>
@@ -70,6 +70,6 @@ export class LoginForm extends Component {
 }
 
 export default reduxForm({
-    form: 'login',
+    form: 'listCreateForm',
     onSubmitFail: (errors, dispatch) => dispatch(focus('login', 'username'))
-})(LoginForm);
+})(Contact_CreateForm);

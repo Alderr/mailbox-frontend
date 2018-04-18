@@ -2,26 +2,21 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import loginGate from './requires-login-gate';
+import loginGate from '../requires-login-gate';
 import CampaignItem from './CampaignItem.js';
 
-import { getCampaigns } from '../actions/userActions';
+import { getCampaigns } from '../../actions/userActions';
 
 export class DashboardCampaigns extends Component {
-    constructor(props){
-        super(props);
-    }
 
     componentWillMount() {
         this.props.dispatch(getCampaigns(this.props.userId));
     }
 
     createCampaignItem(campaign) {
-        const { name, _id, date, lists } = campaign;
-        console.log('NAME, _ID', name, _id);
+        const { name, _id, date } = campaign;
 
-        return <CampaignItem key={_id} campaignName={name} id={_id} date={date}/>;
-
+        return <CampaignItem key={_id} campaignName={name} id={_id} date={date} crud={true}/>;
     }
 
     render() {
@@ -34,7 +29,6 @@ export class DashboardCampaigns extends Component {
         let campaigns;
         if (!this.props.loading && this.props.campaigns && !this.props.message) {
             campaigns = this.props.campaigns.map(campaign => this.createCampaignItem(campaign));
-
         }
 
         let error;

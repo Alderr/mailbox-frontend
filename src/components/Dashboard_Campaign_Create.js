@@ -13,6 +13,7 @@ export class DashboardCampaignCreate extends Component {
     constructor(props){
         super(props);
 
+        // Keeping track of the template for future use + data what the user wants in their campaign
         this.state = {
             template: '<html><body><br><br><h1>Hello. ^^</h1><h2>Put your email here!</h2></body></html>',
             data: {}

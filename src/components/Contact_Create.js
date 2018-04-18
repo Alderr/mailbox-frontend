@@ -1,41 +1,49 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import loginGate from './requires-login-gate';
-import ContactCreateForm from './ContactCreateForm';
+import ContactCreateForm from './Contact_CreateForm';
 
-import { getCampaigns, createContact } from '../actions/userActions';
+import { createContact } from '../actions/userActions';
 
-export function ContactCreate(props) {
+export class ContactCreate extends Component {
+    constructor(props){
+        super(props);
 
-    function createContact(data) {
-        props.dispatch(createContact(props.userId, props.listId, data, moveToListIdScreen));
+        this.createContact = this.createContact.bind(this);
+        this.moveToListIdScreen = this.moveToListIdScreen.bind(this);
     }
 
-    function moveToListIdScreen() {
-        props.history.push(`/dashboard/lists/id/${props.listId}`);
+    createContact(data) {
+        this.props.dispatch(createContact(this.props.userId, this.props.listId, data, this.moveToListIdScreen));
     }
 
-    let loading;
-    if (props.loading) {
-        loading = <h3>Adding...</h3>;
+    moveToListIdScreen() {
+        this.props.history.push(`/dashboard/lists/id/${this.props.listId}`);
     }
 
-    let error;
-    if (props.message) {
-        error = <h3>{props.message}</h3>;
-    }
+    render() {
 
-    return(
-        <section>
-            <h1> Contact - Create </h1>
-            <ContactCreateForm createContact={createContact}/>
-            {loading}
-            {error}
-        </section>
-    );
+        let loading;
+        if (this.props.loading) {
+            loading = <h3>Adding...</h3>;
+        }
+
+        let error;
+        if (this.props.message) {
+            error = <h3>{this.props.message}</h3>;
+        }
+
+        return(
+            <section>
+                <h1> Contact - Create </h1>
+                <ContactCreateForm createContact={this.createContact}/>
+                {loading}
+                {error}
+            </section>
+        );
+    }
 }
-
 
 const mapStateToProps = Reducers => {
     return {

@@ -5,10 +5,10 @@ import loginGate from './requires-login-gate';
 
 import { getCampaigns, deleteContact } from '../actions/userActions';
 
-export class DashboardListView extends Component {
+export function DashboardListView(props) {
 
-    createContacts() {
-        return this.props.list.contacts.map(contact => {
+    function createContacts() {
+        return props.list.contacts.map(contact => {
             return (
                 <li key={contact._id}>
                     <p>{contact.firstName} {contact.lastName}</p>
@@ -19,30 +19,27 @@ export class DashboardListView extends Component {
         });
     }
 
-    deleteContact (id) {
-        this.props.dispatch(deleteContact(this.props.userId, this.props.list._id, id));
+    function deleteContact (id) {
+        props.dispatch(deleteContact(props.userId, props.list._id, id));
     }
 
-    moveToCreateContactView() {
-        this.props.history.push(`/dashboard/lists/id/${this.props.list._id}/createContact`);
+    function moveToCreateContactView() {
+        props.history.push(`/dashboard/lists/id/${props.list._id}/createContact`);
     }
 
-    render() {
-
-        return(
-            <section>
-                <h1> List: {this.props.list.name} </h1>
-                <div>
-                    <button onClick={() => this.moveToCreateContactView()}>
+    return(
+        <section>
+            <h1> List: {props.list.name} </h1>
+            <div>
+                <button onClick={() => this.moveToCreateContactView()}>
                           Add Contact
-                    </button>
-                </div>
-                <ul>
-                    {this.createContacts()}
-                </ul>
-            </section>
-        );
-    }
+                </button>
+            </div>
+            <ul>
+                {createContacts()}
+            </ul>
+        </section>
+    );
 }
 
 const mapStateToProps = (Reducers, props) => {

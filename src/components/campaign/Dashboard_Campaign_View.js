@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import loginGate from './requires-login-gate';
+import loginGate from '../requires-login-gate';
 
-import { getCampaignEvent } from '../actions/userActions';
+import { getCampaignEvent } from '../../actions/userActions';
 
 export class DashboardCampaignView extends Component {
     componentWillMount() {

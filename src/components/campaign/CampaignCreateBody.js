@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import loginGate from './requires-login-gate';
+import loginGate from '../requires-login-gate';
 
 // Require Editor JS files.
 import 'froala-editor/js/froala_editor.pkgd.min.js';
@@ -14,10 +14,10 @@ import 'froala-editor/css/themes/dark.min.css';
 import 'font-awesome/css/font-awesome.css';
 
 //require devices
-import '../css/devices.min.css';
+import './css/devices.min.css';
 
 //CSS
-import '../css/campaignCreateBody.css';
+import './css/campaignCreateBody.css';
 
 import FroalaEditor from 'react-froala-wysiwyg';
 import FroalaEditorView from 'react-froala-wysiwyg/FroalaEditorView';

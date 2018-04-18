@@ -1,5 +1,5 @@
 import React from 'react';
-import loginGate from './requires-login-gate';
+import loginGate from '../requires-login-gate';
 
 export function CampaignEndScreen(props) {
 

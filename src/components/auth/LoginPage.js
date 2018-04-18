@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 
 import LoginForm from './LoginForm';
 
-import { login } from '../actions/loginActions';
+import { login } from '../../actions/loginActions';
 
 export class LoginPage extends Component {
 

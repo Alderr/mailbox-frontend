@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import {Field, reduxForm, focus} from 'redux-form';
 
-import Input from './Input';
+import Input from '../Input';
 
-import { login } from '../actions/loginActions';
-import { required, nonEmpty } from '../validators';
+import { login } from '../../actions/loginActions';
+import { required, nonEmpty } from '../../validators';
 
 export class LoginForm extends Component {
 

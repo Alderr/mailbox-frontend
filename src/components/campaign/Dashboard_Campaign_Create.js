@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
 
-import loginGate from './requires-login-gate';
+import loginGate from '../requires-login-gate';
 import CampaignCreateForm from './CampaignCreateForm';
 import CampaignCreateBody from './CampaignCreateBody';
 import CampaignEndScreen from './CampaignEndScreen';
 
-import { createCampaign, getLists } from '../actions/userActions';
+import { createCampaign, getLists } from '../../actions/userActions';
 
 export class DashboardCampaignCreate extends Component {
     constructor(props){

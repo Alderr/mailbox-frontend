@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import loginGate from './requires-login-gate';
+import loginGate from '../requires-login-gate';
 import ContactCreateForm from './Contact_CreateForm';
 
-import { createContact } from '../actions/userActions';
+import { createContact } from '../../actions/userActions';
 
 export class ContactCreate extends Component {
     constructor(props){

@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import loginGate from './requires-login-gate';
+import loginGate from '../requires-login-gate';
 
-import { deleteContact } from '../actions/userActions';
+import { deleteContact } from '../../actions/userActions';
 
 export function DashboardListView(props) {
 

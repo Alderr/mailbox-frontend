@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { Link } from 'react-router-dom';
 
-import { deleteList, setCurrentList } from '../actions/userActions';
+import { deleteList, setCurrentList } from '../../actions/userActions';
 
 export function ListItem(props) {
 

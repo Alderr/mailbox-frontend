@@ -5,18 +5,18 @@ import './App.css';
 
 import Home from './components/Home';
 import Dashboard from './components/Dashboard';
-import LoginPage from './components/LoginPage';
+import LoginPage from './components/auth/LoginPage';
 
 import MainView from './components/MainView';
-import DashboardLists from './components/Dashboard_Lists';
-import DashboardCampaigns from './components/Dashboard_Campaigns';
+import DashboardLists from './components/list/Dashboard_Lists';
+import DashboardCampaigns from './components/campaign/Dashboard_Campaigns';
 
-import DashboardCampaignView from './components/Dashboard_Campaign_View';
-import DashboardListView from './components/Dashboard_List_View';
+import DashboardCampaignView from './components/campaign/Dashboard_Campaign_View';
+import DashboardListView from './components/list/Dashboard_List_View';
 
-import DashboardCampaignCreate from './components/Dashboard_Campaign_Create';
-import DashboardListCreate from './components/Dashboard_List_Create';
-import ContactCreate from './components/Contact_Create';
+import DashboardCampaignCreate from './components/campaign/Dashboard_Campaign_Create';
+import DashboardListCreate from './components/list/Dashboard_List_Create';
+import ContactCreate from './components/list/Contact_Create';
 
 // import Report_Event from './components/Report_Event';
 

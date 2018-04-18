@@ -2,11 +2,9 @@ const initialStore = {
     loading: false,
     message: '',
     dashboardData: '',
-    listsData: '',
-    listData: '',
+    listsData: [],
     currentList: '',
-    campaignsData: '',
-    campaignData: '',
+    campaignsData: [],
     campaignEventData: ''
 };
 

@@ -1,48 +1,41 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
 import loginGate from './requires-login-gate';
 import ContactCreateForm from './ContactCreateForm';
 
-import { Link } from 'react-router-dom';
-
 import { getCampaigns, createContact } from '../actions/userActions';
 
-export class ContactCreate extends Component {
-    constructor(props){
-        super(props);
+export function ContactCreate(props) {
+
+    function createContact(data) {
+        props.dispatch(createContact(props.userId, props.listId, data, moveToListIdScreen));
     }
 
-    createContact = (data) => {
-        this.props.dispatch(createContact(this.props.userId, this.props.listId, data, this.moveToListIdScreen));
+    function moveToListIdScreen() {
+        props.history.push(`/dashboard/lists/id/${props.listId}`);
     }
 
-    moveToListIdScreen = () => {
-      this.props.history.push(`/dashboard/lists/id/${this.props.listId}`);
+    let loading;
+    if (props.loading) {
+        loading = <h3>Adding...</h3>;
     }
 
-    render() {
-
-        let loading;
-        if (this.props.loading) {
-            loading = <h3>Adding...</h3>;
-        }
-
-        let error;
-        if (this.props.message) {
-            error = <h3>{this.props.message}</h3>;
-        }
-
-        return(
-            <section>
-                <h1> Contact - Create </h1>
-                <ContactCreateForm createContact={this.createContact}/>
-                {loading}
-                {error}
-            </section>
-        );
+    let error;
+    if (props.message) {
+        error = <h3>{props.message}</h3>;
     }
+
+    return(
+        <section>
+            <h1> Contact - Create </h1>
+            <ContactCreateForm createContact={createContact}/>
+            {loading}
+            {error}
+        </section>
+    );
 }
+
 
 const mapStateToProps = Reducers => {
     return {

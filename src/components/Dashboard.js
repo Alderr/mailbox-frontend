@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link, Route } from 'react-router-dom';
+import CampaignItem from './CampaignItem';
 
 import loginGate from './requires-login-gate';
 
@@ -13,15 +13,29 @@ export class Dashboard extends Component {
         this.props.dispatch(getDashboard(this.props.userId));
     }
 
+    createCampaignItems(arr) {
+        return arr.map(campaign => {
+            const { name, _id, date } = campaign;
+
+            return <CampaignItem key={_id} campaignName={name} id={_id} date={date} crud={false} />;
+        });
+    }
+
     render() {      
         const { recentCampaigns, totalSubscribers } = this.props.summary;
+        let recentCampaignsList;
+
+        if (recentCampaigns) {
+            recentCampaignsList = this.createCampaignItems(recentCampaigns);
+        }
 
         return(
-            <div>
-                <h1>
-          Dashboard.js
-                </h1>
-            </div>
+            <section>
+                <h1> Dashboard.js </h1>
+                <h1> Total Subscribers: {totalSubscribers} </h1>
+                <h1> Recent Campaigns </h1>
+                <ul>{recentCampaignsList}</ul>
+            </section>
         );
     }
 }

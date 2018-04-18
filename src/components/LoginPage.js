@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {Field, reduxForm, focus} from 'redux-form';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
-import Input from './Input';
 import LoginForm from './LoginForm';
 
 import { login } from '../actions/loginActions';

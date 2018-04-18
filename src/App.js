@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import './App.css';
@@ -19,12 +18,9 @@ import DashboardCampaignCreate from './components/Dashboard_Campaign_Create';
 import DashboardListCreate from './components/Dashboard_List_Create';
 import ContactCreate from './components/Contact_Create';
 
-import Report_Event from './components/Report_Event';
+// import Report_Event from './components/Report_Event';
 
 export default class App extends Component {
-    constructor(props){
-        super(props);
-    }
 
     render() {
 
@@ -49,8 +45,8 @@ export default class App extends Component {
                     <Route exact path='/dashboard/lists/id/:id/createContact' component={ContactCreate} />
                     
                     {/* Not done */}
-                    <Route exact path='/dashboard/campaigns/id/:id/email' component={null} />
-                    <Route exact path='/dashboard/campaigns/id/:id/report/:event' component={null} />
+                    {/* <Route exact path='/dashboard/campaigns/id/:id/email' component={null} /> */}
+                    {/* <Route exact path='/dashboard/campaigns/id/:id/report/:event' component={null} /> */}
                 </div>
             </Router>
         );

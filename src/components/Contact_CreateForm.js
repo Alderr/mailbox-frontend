@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
 import {Field, reduxForm, focus} from 'redux-form';
-import { Link } from 'react-router-dom';
 
 import Input from './Input';
 
 import { required, nonEmpty } from '../validators';
 
-export class ContactCreateForm extends Component {
-    constructor(props){
-        super(props);
-    }
+export class Contact_CreateForm extends Component {
 
     onSubmit(values) {
         this.props.createContact(values);
@@ -36,7 +32,7 @@ export class ContactCreateForm extends Component {
 
         return(
             <section>
-                <form className='login-form' onSubmit={this.props.handleSubmit( values => this.onSubmit(values))}>
+                <form className='login-form' onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
 
                     {error}
                     {message}
@@ -76,4 +72,4 @@ export class ContactCreateForm extends Component {
 export default reduxForm({
     form: 'listCreateForm',
     onSubmitFail: (errors, dispatch) => dispatch(focus('login', 'username'))
-})(ContactCreateForm);
+})(Contact_CreateForm);

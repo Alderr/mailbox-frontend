@@ -8,19 +8,15 @@ import CampaignItem from './CampaignItem.js';
 import { getCampaigns } from '../actions/userActions';
 
 export class DashboardCampaigns extends Component {
-    constructor(props){
-        super(props);
-    }
 
     componentWillMount() {
         this.props.dispatch(getCampaigns(this.props.userId));
     }
 
     createCampaignItem(campaign) {
-        const { name, _id, date, lists } = campaign;
+        const { name, _id, date } = campaign;
 
         return <CampaignItem key={_id} campaignName={name} id={_id} date={date}/>;
-
     }
 
     render() {
@@ -33,7 +29,6 @@ export class DashboardCampaigns extends Component {
         let campaigns;
         if (!this.props.loading && this.props.campaigns && !this.props.message) {
             campaigns = this.props.campaigns.map(campaign => this.createCampaignItem(campaign));
-
         }
 
         let error;

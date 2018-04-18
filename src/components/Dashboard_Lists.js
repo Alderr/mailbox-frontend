@@ -8,9 +8,6 @@ import ListItem from './ListItem.js';
 import { getLists } from '../actions/userActions';
 
 export class DashboardLists extends Component {
-    constructor(props){
-        super(props);
-    }
 
     componentWillMount() {
         this.props.dispatch(getLists(this.props.userId));
@@ -21,7 +18,6 @@ export class DashboardLists extends Component {
 
         return <ListItem key={_id} listName={name} subscribers={contacts.length} id={_id} />;
     }
-
 
     render() {
         let loading;

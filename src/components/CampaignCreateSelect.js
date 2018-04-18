@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import Select from 'react-select';
 
 import loginGate from './requires-login-gate';
@@ -14,7 +13,6 @@ export class CampaignCreateSelect extends Component {
         this.state = {
             removeSelected: true,
             disabled: false,
-            crazy: false,
             stayOpen: false,
             value: [],
             rtl: false,
@@ -36,7 +34,7 @@ export class CampaignCreateSelect extends Component {
     }
 
     render() {
-        const { crazy, disabled, stayOpen, value } = this.state;
+        const { disabled, stayOpen, value } = this.state;
 
         let error;
         if (this.props.error) {
@@ -46,6 +44,7 @@ export class CampaignCreateSelect extends Component {
                 </div>
             );
         }
+
         let message;
         if (this.props.message) {
             message = (
@@ -57,7 +56,8 @@ export class CampaignCreateSelect extends Component {
 
         return(
             <section>
-                <h1>Hi!</h1>
+                {error}
+                {message}
                 <Select
                     closeOnSelect={!stayOpen}
                     disabled={disabled}

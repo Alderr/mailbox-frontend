@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {Field, reduxForm, focus} from 'redux-form';
-import { Link } from 'react-router-dom';
 
 import Input from './Input';
 
@@ -8,9 +7,6 @@ import { login } from '../actions/loginActions';
 import { required, nonEmpty } from '../validators';
 
 export class LoginForm extends Component {
-    constructor(props){
-        super(props);
-    }
 
     onSubmit(values) {
         this.props.dispatch(login(values));

@@ -1,40 +1,27 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import loginGate from './requires-login-gate';
 
 import { Link } from 'react-router-dom';
 
 import { deleteList, setCurrentList } from '../actions/userActions';
 
-export class ListItem extends Component {
-    constructor(props){
-        super(props);
-    }
+export function ListItem(props) {
 
-    deleteList = () => {
-        this.props.dispatch(deleteList(this.props.userId, this.props.id));
-    }
+    return(
+        <section key={props.id}>
 
-    setCurrentList = () => {
-      this.props.dispatch(setCurrentList(this.props.id));
-    }
-
-    render() {
-        return(
-            <section key={this.props.id}>
-
-                <li key={this.props.id}>
-                    <Link onClick={this.setCurrentList} to={`/dashboard/lists/id/${this.props.id}`}>
-                        <p>{this.props.listName} - {this.props.subscribers} subscribers</p>
-                    </Link>
-                    <button onClick={this.deleteList}> Delete </button>
-                </li>
+            <li key={props.id}>
+                <Link onClick={() => props.dispatch(setCurrentList(props.id))} to={`/dashboard/lists/id/${props.id}`}>
+                    <p>{props.listName} - {props.subscribers} subscribers</p>
+                </Link>
+                <button onClick={() => props.dispatch(deleteList(props.userId, props.id))}> Delete </button>
+            </li>
 
 
-            </section>
-        );
-    }
+        </section>
+    );
 }
+
 
 const mapStateToProps = Reducers => {
     return {

@@ -1,34 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import loginGate from './requires-login-gate';
-
 import { Link } from 'react-router-dom';
 
-import { deleteCampaign, setCurrentList } from '../actions/userActions';
+import { deleteCampaign } from '../actions/userActions';
 
-export class CampaignItem extends Component {
-    constructor(props){
-        super(props);
-    }
+export function CampaignItem(props) {
 
-    deleteCampaign = () => {
-        this.props.dispatch(deleteCampaign(this.props.userId, this.props.id));
-    }
-
-    render() {
-
-        return(
-            <section>
-                <li>
-                    <Link to={`/dashboard/campaigns/id/${this.props.id}`}>
-                        {this.props.campaignName} - Sent on {this.props.date}
-                    </Link>
-                    <button onClick={this.deleteCampaign}>Delete</button>
-                </li>
-            </section>
-        );
-    }
+    return(
+        <section>
+            <li>
+                <Link to={`/dashboard/campaigns/id/${props.id}`}>
+                    {props.campaignName} - Sent on {props.date}
+                </Link>
+                {props.crud ? <button onClick={() => props.dispatch(deleteCampaign(props.userId, props.id))}>Delete</button> : null}
+            </li>
+        </section>
+    );
 }
+
 
 const mapStateToProps = Reducers => {
     return {

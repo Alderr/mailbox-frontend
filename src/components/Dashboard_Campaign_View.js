@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 
 import loginGate from './requires-login-gate';
 
@@ -22,12 +21,11 @@ export class DashboardCampaignView extends Component {
             const checkOne = nextProps.campaignEvent.click.emails.length === this.props.campaignEvent.click.emails.length;
             const checkTwo = this.getClicks(nextProps.campaignEvent.click.emails) === this.getClicks(this.props.campaignEvent.click.emails);
             const checkThree = nextProps.campaignEvent.delivery.emails.length === this.props.campaignEvent.delivery.emails.length;
-            console.log('and.. ', !(checkOne && checkTwo));
+
             return !(checkOne && checkTwo && checkThree);
         }
 
         return true;
-
     }
 
     startPeriodicRefresh() {

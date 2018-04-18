@@ -28,7 +28,7 @@ window.$ = $;
 export class CampaignCreateBody extends Component {
     constructor(props){
         super(props);
-        this.keyDownTimer;
+        this.keyDownTimer = null;
 
         this.state = {
             content: props.template,
@@ -39,8 +39,6 @@ export class CampaignCreateBody extends Component {
             height: 900,
             heightMin: 300,
             htmlRemoveTags: ['script'],
-            lineBreakerTags: [''],
-            lineBreakerOffset: 0,
             linkAlwaysBlank: true,
             linkText: true,
             fullPage: true,

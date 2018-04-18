@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Route, Switch, Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 import loginGate from './requires-login-gate';
 import CampaignCreateForm from './CampaignCreateForm';
@@ -55,11 +55,9 @@ export class DashboardCampaignCreate extends Component {
 
     render() {
 
-        const { saveCampaignData, sendCampaignData, handleModelChange, handleInputChange } = this;
-        const { match, location, history } = this.props;
+        const { saveCampaignData, sendCampaignData, handleModelChange } = this;
         const { template } = this.state;
 
-        let loading;
         if (this.props.loading) {
             return (<h3>Loading...</h3>);
         }

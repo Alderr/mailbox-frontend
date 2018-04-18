@@ -3,9 +3,6 @@ import { connect } from 'react-redux';
 import loginGate from './requires-login-gate';
 import CampaignCreateSelect from './CampaignCreateSelect';
 
-
-import { Link } from 'react-router-dom';
-
 export class CampaignCreateForm extends Component {
     constructor(props){
         super(props);

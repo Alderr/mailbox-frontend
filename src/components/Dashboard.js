@@ -4,13 +4,14 @@ import CampaignItem from './CampaignItem';
 
 import loginGate from './requires-login-gate';
 
-import { getDashboard } from '../actions/userActions';
+import { getDashboard, getCampaigns } from '../actions/userActions';
 
 
 export class Dashboard extends Component {
 
     componentWillMount() {
         this.props.dispatch(getDashboard(this.props.userId));
+        this.props.dispatch(getCampaigns(this.props.userId));
     }
 
     createCampaignItems(arr) {

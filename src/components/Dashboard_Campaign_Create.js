@@ -14,73 +14,79 @@ export class DashboardCampaignCreate extends Component {
         super(props);
 
         this.state = {
-          template: '<html><body><br><br><h1>Hello. ^^</h1><h2>Put your email here!</h2></body></html>',
-          data: {}
-        }
+            template: '<html><body><br><br><h1>Hello. ^^</h1><h2>Put your email here!</h2></body></html>',
+            data: {}
+        };
+
+        this.sendCampaignData = this.sendCampaignData.bind(this);
+        this.saveCampaignData = this.saveCampaignData.bind(this);
+        this.moveToCampaignScreen = this.moveToCampaignScreen.bind(this);
+        this.handleModelChange = this.handleModelChange.bind(this);
     }
 
     componentWillMount() {
-      this.props.dispatch(getLists(this.props.userId));
+        this.props.dispatch(getLists(this.props.userId));
     }
 
-    saveCampaignData = (data) => {
-      console.log(data);
-      this.setState({data: {...this.state.data, ...data}});
+    // Binding function to class instance for passing to children
+    saveCampaignData(data) { 
+        this.setState({data: {...this.state.data, ...data}});
     }
 
-    sendCampaignData = () => {
-      this.props.dispatch(createCampaign(this.props.userId, this.state.data, this.moveToCampaignScreen));
+    // Binding function to class instance for passing to children
+    sendCampaignData() {
+        this.props.dispatch(createCampaign(this.props.userId, this.state.data, this.moveToCampaignScreen));
     }
 
-    moveToCampaignScreen = () => {
-      this.props.history.push('/dashboard/campaigns');
+    // Binding function to class instance for children
+    moveToCampaignScreen() {
+        this.props.history.push('/dashboard/campaigns');
     }
 
-    handleModelChange = (model) => {
-      console.log(model);
-      this.setState({content: model})
+    // Binding function to class instance for children
+    handleModelChange(model) {
+        this.setState({content: model});
     }
 
-    handleInputChange = (e) => {
-      console.log(e.target.value);
-      this.setState({content: e.target.value})
+    handleInputChange(e) {
+        this.setState({content: e.target.value});
     }
 
-    passProps = (props, yourProps, Component) => {
-      return <Component {... yourProps} {...props} />;
+    passProps(props, yourProps, Component) {
+        return <Component {... yourProps} {...props} />;
     }
 
     render() {
 
-      const { saveCampaignData, sendCampaignData, handleModelChange, handleInputChange } = this;
-      const { match, location, history } = this.props;
-      const { template } = this.state;
+        const { saveCampaignData, sendCampaignData, handleModelChange, handleInputChange } = this;
+        const { match, location, history } = this.props;
+        const { template } = this.state;
 
-      let loading;
-      if (this.props.loading) {
-          return (<h3>Loading...</h3>);
-      }
+        let loading;
+        if (this.props.loading) {
+            return (<h3>Loading...</h3>);
+        }
 
-      let error;
-      if (this.props.message) {
-          error = <h3>{this.props.message}</h3>;
-      }
+        let error;
+        if (this.props.message) {
+            error = <h3>{this.props.message}</h3>;
+        }
 
-      if (!this.props.loading && this.props.lists) {
+        if (!this.props.loading && this.props.lists) {
 
 
-        return(
-            <section>
-              <h1>Campaign Create! </h1>
-                {error}
-                <Route exact path={`/dashboard/campaigns/create`} component={(props) => this.passProps(props, { saveCampaignData }, CampaignCreateForm )} />
-                <Route exact path={`/dashboard/campaigns/create/email`} component={(props) => this.passProps(props, { saveCampaignData, handleModelChange, template }, CampaignCreateBody)} />
-                <Route exact path={`/dashboard/campaigns/create/done`} component={(props) => this.passProps(props, { sendCampaignData }, CampaignEndScreen)} />
-            </section>
-        );
-      }
+            return(
+                <section>
+                    <h1>Campaign Create! </h1>
+                    {error}
+                    <Route exact path={'/dashboard/campaigns/create'} component={(props) => this.passProps(props, { saveCampaignData }, CampaignCreateForm )} />
+                    <Route exact path={'/dashboard/campaigns/create/email'} component={(props) => this.passProps(props, { saveCampaignData, handleModelChange, template }, CampaignCreateBody)} />
+                    <Route exact path={'/dashboard/campaigns/create/done'} component={(props) => this.passProps(props, { sendCampaignData }, CampaignEndScreen)} />
+                </section>
+            );
+        }
 
-      return (<h1>Something went wrong</h1>);
+        return (<h1>Something went wrong</h1>);
     }
 }
 

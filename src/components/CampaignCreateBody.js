@@ -146,7 +146,7 @@ export class CampaignCreateBody extends Component {
 
     }
 
-    saveData(){
+    saveData() {
         this.props.saveCampaignData({body: this.state.content});
         this.props.history.push('/dashboard/campaigns/create/done');
     }

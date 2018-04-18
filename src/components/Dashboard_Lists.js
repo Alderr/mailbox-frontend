@@ -19,7 +19,7 @@ export class DashboardLists extends Component {
     createListItem(list) {
         const { name, contacts, _id } = list;
 
-        return <ListItem key={_id} listName={name} subscribers={contacts.length} id={_id} />
+        return <ListItem key={_id} listName={name} subscribers={contacts.length} id={_id} />;
     }
 
 

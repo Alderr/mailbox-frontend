@@ -34,7 +34,8 @@ export default(state = initialStore, action) => {
         return Object.assign({}, state, {
             loading: false,
             loggedIn: true,
-            userId: action.userId
+            userId: action.userId,
+            message: '',
         });
     }
 

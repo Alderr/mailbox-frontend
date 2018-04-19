@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-import LoginForm from './LoginForm';
+import RegisterForm from './RegisterForm';
 
-export class LoginPage extends Component {
+import { register } from '../../actions/loginActions';
+
+export class RegisterPage extends Component {
 
     render() {
 
@@ -14,8 +16,8 @@ export class LoginPage extends Component {
 
         return(
             <section>
-                <h1> LoginPage </h1>
-                <LoginForm message={this.props.message} />
+                <h1> Register </h1>
+                <RegisterForm message={this.props.message} />
             </section>
         );
     }
@@ -28,4 +30,4 @@ const mapStateToProps = Reducers => {
     };
 };
 
-export default connect(mapStateToProps)(LoginPage);
+export default connect(mapStateToProps)(RegisterPage);

@@ -1,3 +1,4 @@
+import * as LoginActions from '../actions/loginActions';
 
 const initialStore = {
     loggedIn: false,
@@ -8,10 +9,17 @@ const initialStore = {
 
 export default(state = initialStore, action) => {
 
-    if (action.type === 'LOGIN') {
+    if (action.type === LoginActions.LOGIN) {
         return Object.assign({}, state, {
             loading: true,
             message: 'Logging in...'
+        });
+    }
+
+    if (action.type === LoginActions.REGISTER) {
+        return Object.assign({}, state, {
+            loading: true,
+            message: 'Creating your account...'
         });
     }
 

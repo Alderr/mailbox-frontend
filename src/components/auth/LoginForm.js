@@ -28,7 +28,7 @@ export class LoginForm extends Component {
         let messageSection;
         if (message) {
             messageSection = (
-                <div className="form-error" aria-live="polite">
+                <div className="form-message" aria-live="polite">
                     { message }
                 </div>
             );
@@ -40,7 +40,7 @@ export class LoginForm extends Component {
 
                     {errorSection}
                     {messageSection}
-                    <label htmlFor="username">Username</label>
+                    <label htmlFor="username">Username:</label>
                     <Field
                         component={Input}
                         type="text"
@@ -49,7 +49,7 @@ export class LoginForm extends Component {
                         validate={[required, nonEmpty]}
                     />
 
-                    <label htmlFor="password">Password</label>
+                    <label htmlFor="password">Password:</label>
                     <Field
                         component={Input}
                         type="password"

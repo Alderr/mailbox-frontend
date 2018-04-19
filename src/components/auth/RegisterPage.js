@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 
-import LoginForm from './LoginForm';
+import RegisterForm from './RegisterForm';
 
-export class LoginPage extends Component {
+
+export class RegisterPage extends Component {
 
     render() {
 
@@ -15,9 +16,9 @@ export class LoginPage extends Component {
         return(
             <section>
                 <h1><Link to='/'> Mailbox </Link></h1>
-                <h3> Login </h3>
-                <LoginForm message={this.props.message} />
-                <p>Need an account? <Link to='/register'>Register.</Link></p>
+                <h3> Register </h3>
+                <RegisterForm message={this.props.message} />
+                <p>Already have an account? <Link to='/login'>Sign in.</Link></p>
             </section>
         );
     }
@@ -30,4 +31,4 @@ const mapStateToProps = Reducers => {
     };
 };
 
-export default connect(mapStateToProps)(LoginPage);
+export default connect(mapStateToProps)(RegisterPage);

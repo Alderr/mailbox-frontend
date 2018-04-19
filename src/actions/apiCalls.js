@@ -44,6 +44,34 @@ export const findUser = (dispatch, user, pass, fail) => {
         });
 };
 
+export const registerUser = (dispatch, user, pass, fail) => {
+    const { username, password, firstName, lastName } = user;
+
+    return instance({
+        method: 'post',
+        url: 'user/create',
+        data: {
+            username,
+            password,
+            name: {
+                firstName,
+                lastName
+            }
+        }
+    })
+        .then(response => {
+            let userId = response.data;
+
+            if (response.data === 'Wrong credentials!') {
+                
+                return dispatch(fail('Wrong credentials!'));
+            }
+
+            return dispatch(pass(userId));
+        })
+        .catch(err => dispatch(fail(err.response.data)));
+};
+
 export const getDashboardData = (dispatch, userId) => {
     
     return instance({

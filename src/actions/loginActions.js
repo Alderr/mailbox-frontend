@@ -1,4 +1,4 @@
-import { findUser } from './apiCalls';
+import * as ApiCalls from './apiCalls';
 
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 
@@ -18,12 +18,19 @@ export const LOGIN = 'LOGIN';
 
 export const login = (user) => dispatch => {
     dispatch({type: LOGIN});
-    return findUser(dispatch, user, loginSuccess, loginFailure);
+    return ApiCalls.findUser(dispatch, user, loginSuccess, loginFailure);
 
+};
+
+export const REGISTER = 'REGISTER';
+
+export const register = (user) => dispatch => {
+    dispatch({type: REGISTER});
+    return ApiCalls.registerUser(dispatch, user, loginSuccess, loginFailure);
 };
 
 export const LOGOUT = 'LOGOUT';
 
-export const logout = (credentials) => ({
+export const logout = () => ({
     type: LOGOUT
 });

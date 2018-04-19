@@ -9,7 +9,7 @@ export default () => Component => {
             return <Component {...passThroughProps} />;
         }
 
-        return <Redirect to="/loginPage" />;
+        return <Redirect to="/login" />;
     }
 
     const displayName = Component.displayName || Component.name || 'Component';

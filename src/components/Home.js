@@ -7,7 +7,8 @@ export default class Home extends Component {
         return(
             <section>
                 <h1> Home </h1>
-                <button><Link to='/loginPage'>Get Started</Link></button>
+                <button><Link to='/login'>Log In</Link></button>
+                <button><Link to='/register'>Register</Link></button>
                 <button><Link to='/'>Learn More!</Link></button>
             </section>
         );

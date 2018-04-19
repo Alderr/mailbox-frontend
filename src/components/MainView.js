@@ -4,9 +4,10 @@ import { Link } from 'react-router-dom';
 
 import loginGate from './requires-login-gate';
 
+import { logout } from '../actions/loginActions';
 
 export class MainView extends Component {
-
+    
     render() {
 
         return(
@@ -17,7 +18,7 @@ export class MainView extends Component {
                     <h3><Link to='/dashboard/campaigns'>Campaigns</Link></h3>
                 </div>
                 <button><Link to='/'>Go Home</Link></button>
-                <button><Link to='/loginPage'>Log Out</Link></button>
+                <button onClick={() => this.props.dispatch(logout())}>Log Out</button>
             </div>
         );
     }

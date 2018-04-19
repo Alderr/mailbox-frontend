@@ -21,3 +21,9 @@ a {
   color: none;
   text-decoration: none;
 }
+
+textarea, input {
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}

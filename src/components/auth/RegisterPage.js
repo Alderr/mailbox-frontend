@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 
 import RegisterForm from './RegisterForm';
-
+import './css/RegisterPage';
 
 export class RegisterPage extends Component {
 

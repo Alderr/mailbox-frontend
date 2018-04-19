@@ -45,21 +45,21 @@ export const findUser = (dispatch, user, pass, fail) => {
 };
 
 export const registerUser = (dispatch, user, pass, fail) => {
+    const { username, password, firstName, lastName } = user;
 
     return instance({
         method: 'post',
         url: 'user/create',
         data: {
-            username: '',
-            password: '',
+            username,
+            password,
             name: {
-                firstName: '',
-                lastName: ''
+                firstName,
+                lastName
             }
         }
     })
         .then(response => {
-            console.log('registering response: ', response);
             let userId = response.data;
 
             if (response.data === 'Wrong credentials!') {
@@ -69,9 +69,7 @@ export const registerUser = (dispatch, user, pass, fail) => {
 
             return dispatch(pass(userId));
         })
-        .catch(err => {
-            return dispatch(fail(err.message));
-        });
+        .catch(err => dispatch(fail(err.response.data)));
 };
 
 export const getDashboardData = (dispatch, userId) => {

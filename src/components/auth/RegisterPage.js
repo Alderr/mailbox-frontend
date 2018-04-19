@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 
 import RegisterForm from './RegisterForm';
 
@@ -15,8 +15,10 @@ export class RegisterPage extends Component {
 
         return(
             <section>
-                <h1> Register </h1>
+                <h1><Link to='/'> Mailbox </Link></h1>
+                <h3> Register </h3>
                 <RegisterForm message={this.props.message} />
+                <p>Already have an account? <Link to='/login'>Sign in.</Link></p>
             </section>
         );
     }

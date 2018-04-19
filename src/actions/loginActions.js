@@ -24,6 +24,6 @@ export const login = (user) => dispatch => {
 
 export const LOGOUT = 'LOGOUT';
 
-export const logout = (credentials) => ({
+export const logout = () => ({
     type: LOGOUT
 });

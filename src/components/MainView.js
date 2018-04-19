@@ -13,11 +13,11 @@ export class MainView extends Component {
         return(
             <div>
                 <div className='sideBar'>
+                    <h1><Link to='/'>Mailbox</Link></h1>
                     <h3><Link to='/dashboard'>Dashboard</Link></h3>
                     <h3><Link to='/dashboard/lists'>Lists</Link></h3>
                     <h3><Link to='/dashboard/campaigns'>Campaigns</Link></h3>
                 </div>
-                <button><Link to='/'>Go Home</Link></button>
                 <button onClick={() => this.props.dispatch(logout())}>Log Out</button>
             </div>
         );

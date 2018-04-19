@@ -49,7 +49,7 @@ export class RegisterForm extends Component {
                     <label htmlFor="password">Password</label>
                     <Field
                         component={Input}
-                        type="text"
+                        type="password"
                         name="password"
                         id="password"
                         validate={[required, nonEmpty]}

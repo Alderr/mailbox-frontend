@@ -17,7 +17,7 @@ export class MainView extends Component {
                     <h3><Link to='/dashboard/campaigns'>Campaigns</Link></h3>
                 </div>
                 <button><Link to='/'>Go Home</Link></button>
-                <button><Link to='/loginPage'>Log Out</Link></button>
+                <button><Link to='/login'>Log Out</Link></button>
             </div>
         );
     }

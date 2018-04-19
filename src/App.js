@@ -30,7 +30,7 @@ export default class App extends Component {
                 <div className="App">
 
                     <Route exact path='/' component={Home} />
-                    <Route exact path='/loginPage' component={LoginPage} />
+                    <Route exact path='/login' component={LoginPage} />
                     <Route exact path='/register' component={RegisterPage} />
 
                     <Route path='/dashboard' component={MainView} />

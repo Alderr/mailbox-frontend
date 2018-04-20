@@ -28,7 +28,7 @@ export class RegisterForm extends Component {
         let messageSection;
         if (message) {
             messageSection = (
-                <div className="form-error" aria-live="polite">
+                <div className="form-message" aria-live="polite">
                     { message }
                 </div>
             );

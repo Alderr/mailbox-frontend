@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 
 import RegisterForm from './RegisterForm';
-import './css/RegisterPage';
+import './css/RegisterPage.css';
 
 export class RegisterPage extends Component {
 
@@ -14,11 +14,10 @@ export class RegisterPage extends Component {
         }
 
         return(
-            <section>
-                <h1><Link to='/'> Mailbox </Link></h1>
-                <h3> Register </h3>
+            <section className='register-form-page'>
+                <h1 className='register-mailbox-nav-title'><Link to='/'> mailbox </Link></h1>
                 <RegisterForm message={this.props.message} />
-                <p>Already have an account? <Link to='/login'>Sign in.</Link></p>
+                <div className='register-link'><Link to='/login'>Log in.</Link></div>
             </section>
         );
     }

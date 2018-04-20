@@ -1,0 +1,41 @@
+.register-form-page {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.register-mailbox-nav-title a, .register-link a {
+    font-family: 'Jaapokki';
+    color: black;
+}
+
+.register-link {
+    margin-top: 20px;
+    text-decoration: underline;
+}
+
+.register-link a {
+    color: black;
+}
+
+@media (min-width: 600px) {
+    .register-form-page {   
+        width: 400px;
+    }
+
+    .register-mailbox-nav-title a {
+        font-size: 7vw;
+    }
+}
+
+@media (max-width: 600px) {
+    .register-form-page {    
+        width: 60vw;
+        height: 50vh;
+    }
+    
+    .register-mailbox-nav-title a {
+        font-size: 8vw;
+    }
+}

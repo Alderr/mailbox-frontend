@@ -15,9 +15,9 @@ export class LoginPage extends Component {
 
         return(
             <section className='login-form-page'>
-                <h1 className='mailbox-nav-title'><Link to='/'> mailbox </Link></h1>
+                <h1 className='signup-mailbox-nav-title'><Link to='/'> mailbox </Link></h1>
                 <LoginForm message={this.props.message} />
-                <div className='signup-link'><Link to='/register'>Sign up.</Link></div>
+                <div className='signup-link'><Link to='/register'>Register.</Link></div>
             </section>
         );
     }

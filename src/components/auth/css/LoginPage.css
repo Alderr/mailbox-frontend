@@ -21,7 +21,7 @@
 /* desktop screens */
 @media (min-width: 600px) {
     .login-form-page {   
-        border: 2px solid black;
+        /* border: 2px solid black; */
         width: 400px;
     }
 

@@ -1,8 +1,14 @@
 .register-form-page {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
+    display: flex;  
+    justify-content: center;
+
+    margin-top: 10px;
+}
+
+.register-form-container {
+    margin: 0;
+    padding: 0;
+    width: 400px;
 }
 
 .register-mailbox-nav-title a, .register-link a {
@@ -11,7 +17,7 @@
 }
 
 .register-link {
-    margin-top: 20px;
+    margin-top: 10px;
     text-decoration: underline;
 }
 
@@ -19,20 +25,29 @@
     color: black;
 }
 
+/* desktop screen */
 @media (min-width: 600px) {
     .register-form-page {   
+        /* width: 400px; */
+    }
+
+    .register-form-container {
         width: 400px;
     }
 
     .register-mailbox-nav-title a {
-        font-size: 7vw;
+        font-size: 5vw;
     }
 }
 
 @media (max-width: 600px) {
     .register-form-page {    
-        width: 60vw;
-        height: 50vh;
+ 
+    }
+
+    .register-form-container {
+        /* width: 60vw;
+        height: 50vh; */
     }
     
     .register-mailbox-nav-title a {

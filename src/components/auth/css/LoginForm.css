@@ -6,7 +6,7 @@
     background-color: white;
 }
 
-.form-error {
+.login-form .form-error {
     font-family: 'Jaapokki';
     position: absolute;
     background-color: red;
@@ -17,7 +17,7 @@
     margin-top: 5px;
 }
 
-.form-message {
+.login-form .form-message {
     font-family: 'Jaapokki';
     position: absolute;
     width: 100%;

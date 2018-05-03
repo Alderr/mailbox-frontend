@@ -15,9 +15,11 @@ export class RegisterPage extends Component {
 
         return(
             <section className='register-form-page'>
-                <h1 className='register-mailbox-nav-title'><Link to='/'> mailbox </Link></h1>
-                <RegisterForm message={this.props.message} />
-                <div className='register-link'><Link to='/login'>Log in.</Link></div>
+                <div className="register-form-container">
+                    <h1 className='register-mailbox-nav-title'><Link to='/'> mailbox </Link></h1>
+                    <RegisterForm message={this.props.message} />
+                    <div className='register-link'><Link to='/login'>Log in.</Link></div>
+                </div>
             </section>
         );
     }

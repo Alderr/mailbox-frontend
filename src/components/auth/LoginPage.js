@@ -3,10 +3,15 @@ import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 
 import LoginForm from './LoginForm';
+import { resetMessage } from '../../actions/loginActions';
+
 import './css/LoginPage.css';
 
 export class LoginPage extends Component {
-
+    componentWillUnmount() {
+        this.props.dispatch(resetMessage());
+    }
+    
     render() {
 
         if (this.props.loggedIn) {

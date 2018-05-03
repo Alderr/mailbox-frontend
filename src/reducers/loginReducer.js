@@ -46,5 +46,12 @@ export default(state = initialStore, action) => {
         });
     }
 
+    if (action.type === LoginActions.RESET_MESSAGE) {
+        return Object.assign({}, state, {
+            loading: true,
+            message: ''
+        });
+    }
+
     return state;
 };

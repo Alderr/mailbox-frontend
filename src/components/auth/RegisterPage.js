@@ -3,9 +3,15 @@ import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 
 import RegisterForm from './RegisterForm';
+
+import { resetMessage } from '../../actions/loginActions';
+
 import './css/RegisterPage.css';
 
 export class RegisterPage extends Component {
+    componentWillUnmount() {
+        this.props.dispatch(resetMessage());
+    }
 
     render() {
 

@@ -14,6 +14,12 @@ export const loginFailure = (message) => ({
     message
 });
 
+export const RESET_MESSAGE = 'RESET_MESSAGE';
+
+export const resetMessage = () => ({
+    type: RESET_MESSAGE
+});
+
 export const LOGIN = 'LOGIN';
 
 export const login = (user) => dispatch => {

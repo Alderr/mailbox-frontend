@@ -8,19 +8,20 @@
 .signup-mailbox-nav-title a, .signup-link a {
     font-family: 'Jaapokki';
     color: black;
-}
+}   
 
 .signup-link {
-    margin-top: 20px;
+    margin-top: 10px;
     text-decoration: underline;
 }
 
 .signup-link a {
     color: black;
 }
-
+/* desktop screens */
 @media (min-width: 600px) {
     .login-form-page {   
+        border: 2px solid black;
         width: 400px;
     }
 

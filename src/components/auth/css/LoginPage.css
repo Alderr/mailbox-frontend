@@ -1,6 +1,6 @@
 .login-form-page {
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%,-50%);
 }
@@ -32,11 +32,11 @@
 
 @media (max-width: 600px) {
     .login-form-page {    
-        width: 60vw;
+        width: 85vw;
         height: 50vh;
     }
     
     .signup-mailbox-nav-title a {
-        font-size: 8vw;
+        font-size: 7vw;
     }
 }

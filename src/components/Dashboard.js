@@ -6,6 +6,7 @@ import loginGate from './requires-login-gate';
 
 import { getDashboard, getCampaigns } from '../actions/userActions';
 
+import './Dashboard.css';
 
 export class Dashboard extends Component {
 

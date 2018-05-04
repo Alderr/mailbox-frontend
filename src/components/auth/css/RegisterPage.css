@@ -1,6 +1,7 @@
 .register-form-page {
     display: flex;  
     justify-content: center;
+    /* align-items: center;     */
 
     margin-top: 10px;
 }
@@ -46,8 +47,7 @@
     }
 
     .register-form-container {
-        /* width: 60vw;
-        height: 50vh; */
+        width: 400px;
     }
     
     .register-mailbox-nav-title a {

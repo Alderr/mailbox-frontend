@@ -16,27 +16,13 @@
     margin-top: 5px;
 }
 
-/* .form-message {
-    font-family: 'Jaapokki';
-    position: absolute;
-    width: 100%;
-
-    top: -10%;
-    right: 50%;
-    transform: translate(50%,-50%);
-
-    z-index: 2;
-
-    margin-top: 5px;
-} */
-
 .register-form {
     text-align: center
 }
 
 .register-form label {
     font-family: 'Jaapokki';
-    display: flex;
+    display: flex;  
 }
 
 .register-form input {
@@ -66,21 +52,16 @@
     }
 }
 
+/* mobile screens */
 @media (max-width: 600px) {
-    .register-form-page {
-        width: 60vw;
-        height: 35vh;
-    }
     
     .register-form {
         width: 90%;
-    
         margin: 0 auto;
     }
     
     .register-form input {
-    
-        height: 30px;
+        height: 20px;
         width: 100%;
     }
     

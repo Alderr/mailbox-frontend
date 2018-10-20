@@ -25,7 +25,6 @@ export class Dashboard extends Component {
 
     render() {      
         const { recentCampaigns, totalSubscribers } = this.props.summary;
-        console.log('(~˘▾˘)~  (╯°□°）╯︵ ┻━┻  Dashboard -> render -> this.props.summary', this.props.summary);
         let recentCampaignsList;
 
         if (recentCampaigns) {
@@ -34,7 +33,6 @@ export class Dashboard extends Component {
 
         return(
             <section>
-                <h1> Dashboard.js </h1>
                 <h1> Total Subscribers: {totalSubscribers} </h1>
                 <h1> Recent Campaigns </h1>
                 <ul>{recentCampaignsList}</ul>

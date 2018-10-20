@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import CampaignItem from './campaign/CampaignItem';
+import CampaignItem from '../campaign/CampaignItem';
 
-import loginGate from './requires-login-gate';
+import loginGate from '../requires-login-gate';
 
-import { getDashboard, getCampaigns } from '../actions/userActions';
+import { getDashboard, getCampaigns } from '../../actions/userActions';
 
 import './Dashboard.css';
 
@@ -25,6 +25,7 @@ export class Dashboard extends Component {
 
     render() {      
         const { recentCampaigns, totalSubscribers } = this.props.summary;
+        console.log('(~˘▾˘)~  (╯°□°）╯︵ ┻━┻  Dashboard -> render -> this.props.summary', this.props.summary);
         let recentCampaignsList;
 
         if (recentCampaigns) {

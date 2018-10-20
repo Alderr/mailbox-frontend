@@ -6,7 +6,7 @@ import Input from '../Input';
 import { register } from '../../actions/loginActions';
 import { required, nonEmpty } from '../../validators';
 
-import './css/RegisterForm.css';
+import './RegisterForm.css';
 
 export class RegisterForm extends Component {
 

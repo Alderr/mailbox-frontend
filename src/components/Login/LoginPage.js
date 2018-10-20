@@ -5,7 +5,7 @@ import { Redirect, Link } from 'react-router-dom';
 import LoginForm from './LoginForm';
 import { resetMessage } from '../../actions/loginActions';
 
-import './css/LoginPage.css';
+import './LoginPage.css';
 
 export class LoginPage extends Component {
     componentWillUnmount() {

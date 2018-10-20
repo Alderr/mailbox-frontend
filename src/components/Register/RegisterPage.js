@@ -6,7 +6,7 @@ import RegisterForm from './RegisterForm';
 
 import { resetMessage } from '../../actions/loginActions';
 
-import './css/RegisterPage.css';
+import './RegisterPage.css';
 
 export class RegisterPage extends Component {
     componentWillUnmount() {

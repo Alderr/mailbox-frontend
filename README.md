@@ -1,6 +1,6 @@
 # Mailbox - Frontend
 
-Mailbox is a email marketing tool! You send emails to subscribers with campaigns. 
+Mailbox is an email marketing tool! You send emails to subscribers with campaigns. 
 
 ## Usage
 

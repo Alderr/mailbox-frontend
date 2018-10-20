@@ -15,19 +15,15 @@
     font-size: 3vw;
     transition: ease-in .25s;
     padding: 5px;
-    border-left: 1px solid transparent;
-    border-right: 1px solid transparent;
     border-bottom: 1px solid transparent;
 }
 
 .nav-bar-subtitle:hover {
-    border-left: 1px solid black;
-    border-right: 1px solid black;
+    border-bottom: 1px solid black;
 }
 
 .nav-bar-subtitle:active {
-    border-left: 1px solid white;
-    border-right: 1px solid white;
+    border-bottom: 1px solid white;
 }
 
 .logout-button {

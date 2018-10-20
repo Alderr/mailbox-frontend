@@ -9,6 +9,7 @@ import { resetMessage } from '../../actions/loginActions';
 import './RegisterPage.css';
 
 export class RegisterPage extends Component {
+
     componentWillUnmount() {
         this.props.dispatch(resetMessage());
     }

@@ -16,17 +16,23 @@ export class MainView extends Component {
             <div>
                 <div className='nav-bar'>
                     <Link to='/'><div className='nav-bar-title'>mailbox</div></Link>
-                    <div>
-                        <h3><Link to='/dashboard'>Dashboard</Link></h3>
-                        <h3><Link to='/dashboard/lists'>Lists</Link></h3>
-                        <h3><Link to='/dashboard/campaigns'>Campaigns</Link></h3>
+                    <div className='subtitle-container'>
+                        <Link to='/dashboard'><div className='nav-bar-subtitle'>dashboard</div></Link>
+                        <Link to='/dashboard/lists'><div className='nav-bar-subtitle'>lists</div></Link>
+                        <Link to='/dashboard/campaigns'><div className='nav-bar-subtitle'>campaigns</div></Link>
                     </div>
                 </div>
-                <button onClick={() => this.props.dispatch(logout())}>Log Out</button>
+                <button onClick={this.props.logout}>Log Out</button>
             </div>
         );
     }
 }
+
+const mapDispatchToProps = dispatch => {
+    return {
+        logout: payload => dispatch(logout(payload)), 
+    };
+};
 
 const mapStateToProps = Reducers => {
     return {
@@ -36,4 +42,4 @@ const mapStateToProps = Reducers => {
     };
 };
 
-export default loginGate()(connect(mapStateToProps)(MainView));
+export default loginGate()(connect(mapStateToProps, mapDispatchToProps)(MainView));

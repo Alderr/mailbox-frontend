@@ -1,5 +1,30 @@
 .nav-bar-title {
     font-family: 'Jaapokki';
     color: black;
-    font-size: 10vw;
+    font-size: 8vw;
+}
+
+.subtitle-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.nav-bar-subtitle {
+    font-family: 'Jaapokki';
+    color: black;
+    font-size: 3vw;
+    transition: ease-in .25s;
+    padding: 5px;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+}
+
+.nav-bar-subtitle:hover {
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
+
+.nav-bar-subtitle:active {
+    border-left: 1px solid white;
+    border-right: 1px solid white;
 }

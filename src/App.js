@@ -6,8 +6,8 @@ import './fonts.css';
 
 import Home from './components/HomePage/Home';
 import Dashboard from './components/Dashboard/Dashboard';
-import LoginPage from './components/auth/LoginPage';
-import RegisterPage from './components/auth/RegisterPage';
+import LoginPage from './components/Login/LoginPage';
+import RegisterPage from './components/Register/RegisterPage';
 
 import MainView from './components/MainView/MainView';
 import DashboardLists from './components/list/Dashboard_Lists';

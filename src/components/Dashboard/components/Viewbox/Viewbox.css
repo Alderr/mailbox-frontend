@@ -1,0 +1,17 @@
+.box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    max-width: 300px;
+    background-color: black;
+    color: white;
+    margin: auto;
+    font-family: 'Jaapokki';
+    font-size: 10px;
+}
+
+.box > * {
+    background-color: black;
+}

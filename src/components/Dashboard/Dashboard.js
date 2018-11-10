@@ -5,6 +5,7 @@ import CampaignItem from '../campaign/CampaignItem';
 import loginGate from '../requires-login-gate';
 
 import { getDashboard, getCampaigns } from '../../actions/userActions';
+import Viewbox from './components/Viewbox/Viewbox';
 
 import './Dashboard.css';
 
@@ -33,7 +34,7 @@ export class Dashboard extends Component {
 
         return(
             <section>
-                <h1> Total Subscribers: {totalSubscribers} </h1>
+                <Viewbox title={'Total Subscribers'} data={totalSubscribers} />
                 <h1> Recent Campaigns </h1>
                 <ul>{recentCampaignsList}</ul>
             </section>

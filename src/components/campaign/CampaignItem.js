@@ -18,7 +18,6 @@ export function CampaignItem(props) {
     );
 }
 
-
 const mapStateToProps = Reducers => {
     return {
         userId: Reducers.loginReducer.userId

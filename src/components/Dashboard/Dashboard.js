@@ -25,7 +25,7 @@ export class Dashboard extends Component {
     }
 
     render() {      
-        const { recentCampaigns, totalSubscribers } = this.props.summary;
+        const { recentCampaigns = [], totalSubscribers = 0 } = this.props.summary;
         let recentCampaignsList;
 
         if (recentCampaigns) {
@@ -34,7 +34,12 @@ export class Dashboard extends Component {
 
         return(
             <section>
-                <Viewbox title={'Total Subscribers'} data={totalSubscribers} />
+                <section className={'viewbox-container'}>
+                    <Viewbox title={'Total Subscribers'} data={totalSubscribers} />
+                    <Viewbox title={'Total Campaigns'} data={totalSubscribers} />
+                    <Viewbox title={'Emails Sent'} data={totalSubscribers} />
+                    <Viewbox title={'Open Rate'} data={totalSubscribers} />
+                </section>
                 <h1> Recent Campaigns </h1>
                 <ul>{recentCampaignsList}</ul>
             </section>

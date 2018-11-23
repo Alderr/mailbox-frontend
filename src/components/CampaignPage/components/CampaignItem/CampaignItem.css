@@ -1,0 +1,5 @@
+.campaign-item-container {
+    display: flex;
+    background-color: white;
+    align-self: center;
+}

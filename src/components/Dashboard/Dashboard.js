@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import CampaignItem from '../campaign/CampaignItem';
+import CampaignItem from '../CampaignPage/components/CampaignItem/CampaignItem';
 
 import loginGate from '../requires-login-gate';
 

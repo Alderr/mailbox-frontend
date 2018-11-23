@@ -11,12 +11,12 @@ import RegisterPage from './components/Register/RegisterPage';
 
 import MainView from './components/MainView/MainView';
 import DashboardLists from './components/list/Dashboard_Lists';
-import DashboardCampaigns from './components/campaign/Dashboard_Campaigns';
+import CampaignPage from './components/CampaignPage/CampaignPage';
 
-import DashboardCampaignView from './components/campaign/Dashboard_Campaign_View';
+import DashboardCampaignView from './components/CampaignPage/Dashboard_Campaign_View';
 import DashboardListView from './components/list/Dashboard_List_View';
 
-import DashboardCampaignCreate from './components/campaign/Dashboard_Campaign_Create';
+import DashboardCampaignCreate from './components/CampaignPage/Dashboard_Campaign_Create';
 import DashboardListCreate from './components/list/Dashboard_List_Create';
 import ContactCreate from './components/list/Contact_Create';
 
@@ -38,7 +38,7 @@ export default class App extends Component {
                     <Route exact path='/dashboard' component={Dashboard} />
 
                     <Route exact path='/dashboard/lists' component={DashboardLists} />
-                    <Route exact path='/dashboard/campaigns' component={DashboardCampaigns} />
+                    <Route exact path='/dashboard/campaigns' component={CampaignPage} />
 
                     <Route path='/dashboard/lists/create' component={DashboardListCreate} />
                     <Route path='/dashboard/campaigns/create' component={DashboardCampaignCreate} />

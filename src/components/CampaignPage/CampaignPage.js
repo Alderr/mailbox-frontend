@@ -3,9 +3,11 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import loginGate from '../requires-login-gate';
-import CampaignItem from './CampaignItem.js';
+import CampaignItem from './components/CampaignItem/CampaignItem';
 
 import { getCampaigns } from '../../actions/userActions';
+
+import './CampaignPage.css';
 
 export class DashboardCampaigns extends Component {
 
@@ -38,7 +40,7 @@ export class DashboardCampaigns extends Component {
 
 
         return(
-            <section>
+            <section className={'campaign-page-container'}>
                 <h1> Campaigns </h1>
                 <Link to='/dashboard/campaigns/create'> Create </Link>
                 {loading}

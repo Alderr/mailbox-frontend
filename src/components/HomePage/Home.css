@@ -39,9 +39,8 @@
 
 .login-button, .register-button {
     width: 20vw;
-    height: 50px;
 
-    padding: 0;
+    padding: 5px 10px;
     margin: 0;
 }
 
